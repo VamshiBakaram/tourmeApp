@@ -1,4 +1,4 @@
-# tourmeapp_ios
+# TourMeApp iOS
 
 ## Architecture
 - SwiftUI, Swift, Combine
