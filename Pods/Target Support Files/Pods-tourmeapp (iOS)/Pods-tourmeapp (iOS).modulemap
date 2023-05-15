@@ -1,0 +1,6 @@
+framework module Pods_tourmeapp__iOS_ {
+  umbrella header "Pods-tourmeapp (iOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}
