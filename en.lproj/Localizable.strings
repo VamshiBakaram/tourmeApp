@@ -1,7 +1,7 @@
 "settings_title" = "Settings";
 "settings_membership_details" = "Membership Details";
 "settings_welcome_prefix" = "Welcome";
-"settings_choose_language" = "Choose Language";
+"settings_choose_language" = "Choose\nLanguage";
 "settings_use_subtitles" = "Subtitles";
 "settings_member" = "Member";
 "settings_nonmember" = "Limited to free content";
@@ -61,9 +61,10 @@
 "you_dont_want_to_miss_this"="You don't want to miss this.";
 "onboarding_skip" = "Skip";
 "onboarding_email" = "Email";
-"onboarding_phone" = "Phone";
+"onboarding_phone" = "Phone Number";
 "onboarding_display_name" = "Display Name";
 "onboarding_user_profile_title" = "User Profile";
 "settings_review_app" = "Review App";
 "settings_contact_us" = "Contact Us";
 "toolbar_home" = "Home";
+"May we have some Information?" = "May we have some Information?";

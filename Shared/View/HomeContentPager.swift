@@ -20,23 +20,34 @@ struct HomeContentPager: View {
     @ObservedObject var homeContentViewModel: HomeContentViewModel
         
     var body: some View {
-        
-        if homeContentViewModel.error != nil {
-            
-            NoInternetHomeContentView(homeContentViewModel: homeContentViewModel)
-            
-        } else {
-         
-            PagerView(pageCount: homeContentViewModel.homeContent.count, currentIndex: $currentPage) {
-                ForEach(homeContentViewModel.homeContent, id: \.id) { item in
-                    HomeContentItemView(homeContent: item)
+        VStack(alignment: .leading) {
+            Text("News")
+                .font(.custom(.inriaSansBold, size: 20))
+                .padding(.horizontal)
+                .padding(.vertical, 4)
+            if homeContentViewModel.error != nil {
+                NoInternetHomeContentView(homeContentViewModel: homeContentViewModel)
+            } else {
+                PagerView(pageCount: homeContentViewModel.homeContent.count, currentIndex: $currentPage) {
+                    ForEach(homeContentViewModel.homeContent, id: \.id) { item in
+                        HomeContentItemView(homeContent: item, currentIndex: currentPage)
+                    }
+                }
+                .onAppear {
+                    homeContentViewModel.loadHomeContent(userLanguage: userLanguage)
+                }
+                
+            }
+        }.overlay(
+            HStack(spacing: 5) {
+                ForEach(0..<3) { index in
+                    Capsule()
+                        .fill(currentPage == index ? Color(red: 0.02, green: 0.62, blue: 0.85) : Color.gray)
+                        .frame(width: currentPage == index ? 20 : 7, height: 7)
                 }
             }
-            .onAppear {
-                homeContentViewModel.loadHomeContent(userLanguage: userLanguage)
-            }
-            
-        }
+            .padding(.bottom)
+            , alignment: .bottom)
         
     }
 }

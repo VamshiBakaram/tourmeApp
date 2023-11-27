@@ -12,7 +12,7 @@ public struct Tour: Model {
   public var thumbnailUrl: String
   public var videoUrl: String?
   public var tourstID: String?
-  public var BusStops: List<BusStop>?
+  public var BusStops: BusStopModel?
   public var sortOrder: Int?
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
@@ -26,7 +26,7 @@ public struct Tour: Model {
       thumbnailUrl: String,
       videoUrl: String? = nil,
       tourstID: String? = nil,
-      BusStops: List<BusStop>? = [],
+      BusStops: BusStopModel? = nil,
       sortOrder: Int? = nil) {
     self.init(id: id,
       language: language,
@@ -51,7 +51,7 @@ public struct Tour: Model {
       thumbnailUrl: String,
       videoUrl: String? = nil,
       tourstID: String? = nil,
-      BusStops: List<BusStop>? = [],
+      BusStops: BusStopModel? = nil,
       sortOrder: Int? = nil,
       createdAt: Temporal.DateTime? = nil,
       updatedAt: Temporal.DateTime? = nil) {

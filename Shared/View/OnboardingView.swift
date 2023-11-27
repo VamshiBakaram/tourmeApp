@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FlagKit
+import FloatingLabelTextFieldSwiftUI
 
 struct OnboardingView: View {
     
@@ -17,85 +18,69 @@ struct OnboardingView: View {
     @EnvironmentObject var userPreferencesStore: UserPreferencesStore
     
     var body: some View {
-        
-        // For slide animation...
-        
-        ZStack {
-            
-            // Changing between views...
-            
+        VStack {
             if currentPage == 1 {
-                
                 InitialScreenView(bgColor: Color("PrimaryColor2"))
                     .transition(.scale)
             }
-            
             if currentPage == 2 {
-                
+                ScreenView(image: "onboard2", title: "dont_blink".localized(userLanguage), detail: "you_dont_want_to_miss_this".localized(userLanguage), bgColor: Color("PrimaryColor2"))
+                    .transition(.scale)
+            }
+            if currentPage == 3 {
                 ScreenView(image: "gardenTomb", title: "onboarding_thank_you".localized(userLanguage), detail: "onboarding_your_ticket_to_the_holy_land".localized(userLanguage), bgColor: Color("PrimaryColor2"))
                     .transition(.scale)
             }
-            
-            if currentPage == 3 {
-                
-                ScreenView(image: "gethsemane", title: "dont_blink".localized(userLanguage), detail: "you_dont_want_to_miss_this".localized(userLanguage), bgColor: Color("PrimaryColor2"))
-                    .transition(.scale)
-            }
-            
+//            if currentPage == 4 {
+//                ScreenView(image: "en_gedi_israel", title: "onboarding_get_started_title".localized(userLanguage), detail: "onboarding_get_started_detail".localized(userLanguage), bgColor: Color("PrimaryColor2"))
+//                    .transition(.scale)
+//            }
             if currentPage == 4 {
-                
-                ScreenView(image: "en_gedi_israel", title: "onboarding_get_started_title".localized(userLanguage), detail: "onboarding_get_started_detail".localized(userLanguage), bgColor: Color("PrimaryColor2"))
+                UserProfileScreenView(image: "en_gedi_israel", title: "onboarding_user_profile_title".localized(userLanguage), detail: "May we have some Information?", bgColor: Color("PrimaryColor2"))
                     .transition(.scale)
             }
-            
-            if currentPage == 5 {
-                UserProfileScreenView(image: "en_gedi_israel", title: "onboarding_user_profile_title".localized(userLanguage), detail: "Can we have a little information?", bgColor: Color("PrimaryColor2"))
-                    .transition(.scale)
-            }
-            
         }
         .overlay(
-            
-            // Button...
-            Button(action: {
-                
-                // changing views...
-                withAnimation(.easeInOut) {
-                    
-                    // checking...
-                    if currentPage < totalPages {
-                        currentPage += 1
-                    } else {
-                        ///TODO: save user proflie data
-                        showOnboarding = false
-                    }
-                }
-            }, label: {
-                
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(.black)
-                    .frame(width: 60, height: 60)
-                    .background(Color.white)
-                    .clipShape(Circle())
-                
-                // Circular slider...
-                    .overlay(
-                        
-                        ZStack {
-                            
-                            Circle()
-                                .stroke(Color.black.opacity(0.04), lineWidth: 4)
-                            
-                            Circle()
-                                .trim(from: 0, to: CGFloat(currentPage) / CGFloat(totalPages))
-                                .stroke(Color.white, lineWidth: 4)
-                                .rotationEffect(.init(degrees: -90))
+            HStack {
+                if currentPage == 3 {
+                    Button(action: {
+                        withAnimation(.easeInOut) {
+                            currentPage -= 1
                         }
-                            .padding(-15)
-                    )
-            })
+                    }) {
+                        Text("Previous")
+                            .font(.custom(.inriaSansRegular, size: 18))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: 180)
+                            .frame(height: 50)
+                            .padding()
+                    }
+                    .padding(.bottom, 20)
+                    Spacer()
+                }
+                if currentPage == 2 {
+                    Spacer()
+                }
+                Button(action: {
+                    withAnimation(.easeInOut) {
+                        if currentPage < totalPages {
+                            currentPage += 1
+                        } else {
+                            showOnboarding = false
+                        }
+                    }
+                }, label: {
+                    Text(currentPage == 4 ? "Finish" : "Next")
+                        .font(.custom(.inriaSansRegular, size: 18))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: (currentPage == 1 || currentPage == 4) ? .infinity : 180)
+                        .frame(height: 50)
+                        .background(Color.buttonThemeColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .padding()
+                })
                 .padding(.bottom, 20)
+            }
             , alignment: .bottom
         )
     }
@@ -121,41 +106,10 @@ struct ScreenView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            
             HStack {
-                
-                if currentPage == 1 {
-                    
-                    Text("onboarding_welcome".localized(userLanguage))
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .kerning(1.4)
-                } else {
-                    
-                    Button(action: {
-                        // changing views...
-                        withAnimation(.easeInOut) {
-                            
-                            currentPage -= 1
-                        }
-                    }) {
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal)
-                            .background(Color.black.opacity(0.4))
-                            .cornerRadius(10)
-                    }
-                }
-                
-                
-                
                 Spacer()
-                
                 if canSkip {
                     Button(action: {
-                        
                         showOnboarding = false
                     }, label: {
                         Text("onboarding_skip".localized(userLanguage))
@@ -165,29 +119,31 @@ struct ScreenView: View {
                 }
             }
             .padding()
-            
-            Spacer(minLength: 0)
-            
-            Image(image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(10)
-            
             Text(title)
-                .font(.title)
-                .fontWeight(.bold)
+                .font(.custom(.inriaSansBold, size: 36))
                 .padding(.top)
-            
             Text(detail)
-                .fontWeight(.semibold)
-                .kerning(1.3)
+                .font(.custom(.inriaSansBold, size: 16))
+                .fontWeight(.bold)
+                .frame(width: currentPage == 2 ? 120 : 230)
                 .multilineTextAlignment(.center)
-            
-            Spacer(minLength: 120)
+            Spacer()
         }
         .foregroundColor(.white)
-        .background(bgColor.ignoresSafeArea())
+        .background(
+            Image(image)
+                .resizable()
+                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                .ignoresSafeArea()
+        )
     }
+}
+
+struct ChooseLanguage {
+    let headerImageName: String
+    let languageName: String
+    let selectedIconName = "icon-park"
+    var isSelected = false
 }
 
 struct InitialScreenView: View {
@@ -198,78 +154,118 @@ struct InitialScreenView: View {
     
     var bgColor: Color
     
+    @State private var languageItems: [ChooseLanguage] = [
+        .init(headerImageName: "usa_flag", languageName: "English"),
+        .init(headerImageName: "spain_flag", languageName: "Portugese"),
+        .init(headerImageName: "brasil_flag", languageName: "English")
+    ]
+    
     var body: some View {
-        VStack(spacing: 20) {
-            
-            HStack {
-                
-                if currentPage == 1 {
-                    
-                    Text("onboarding_welcome".localized(userLanguage))
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .kerning(1.4)
-                } else {
-                    
-                    Button(action: {
-                        // changing views...
-                        withAnimation(.easeInOut) {
-                            
-                            currentPage -= 1
-                        }
-                    }) {
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal)
-                            .background(Color.black.opacity(0.4))
-                            .cornerRadius(10)
-                    }
-                }
-                
-                
-                
+        GeometryReader { reader in
+            VStack(spacing: 30) {
                 Spacer()
-                
-                Button(action: {
-                    
-                    showOnboarding = false
-                }, label: {
-                    Text("onboarding_skip".localized(userLanguage))
-                        .fontWeight(.semibold)
-                        .kerning(1.2)
-                })
+                Text("settings_choose_language".localized(userLanguage))
+                    .font(.custom(.inriaSansBold, size: 36))
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                LazyVGrid(columns: reader.size.width < 450 ? Array(repeating: GridItem(.flexible(minimum: 0, maximum: 300)), count: 2) : Array(repeating: GridItem(.flexible(minimum: 0, maximum: 300)), count: 3), content: {
+                    ForEach(0..<languageItems.count, id: \.self) { index in
+                        VStack(spacing: 10) {
+                            Image(languageItems[index].headerImageName)
+                            Text(languageItems[index].languageName)
+                                .font(.custom("InriaSans-Regular", size: 18))
+                                .foregroundColor(.black)
+                            if languageItems[index].isSelected {
+                                Image("icon-park")
+                            }
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: languageItems[index].isSelected ? 10 : 0)
+                                .stroke(Color.black, lineWidth: languageItems[index].isSelected ? 2 : 0)
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: languageItems[index].isSelected ? 10 : 0))
+                        .padding()
+                        .gesture(
+                            TapGesture()
+                                .onEnded({
+                                    for index in 0..<languageItems.count {
+                                        self.languageItems[index].isSelected = false
+                                    }
+                                    self.languageItems[index].isSelected = true
+                                })
+                        )
+                    }
+                }).padding()
+                Spacer()
             }
-            .foregroundColor(.white)
             .padding()
-            
-            Spacer(minLength: 0)
-            
-            Image("tourmeapplogo")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .shadow(color: .white, radius: 30)
-                .shadow(color: .white, radius: 30)
-                .shadow(color: .white, radius: 30)
-                .padding(10)
-            
-            Text("settings_choose_language".localized(userLanguage))
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding(.top)
-            
-            Picker("settings_choose_language".localized(userLanguage), selection: $userLanguage) {
-                Image("US", bundle: FlagKit.assetBundle).tag(Language.en)
-                Image("ES", bundle: FlagKit.assetBundle).tag(Language.es)
-                Image("BR", bundle: FlagKit.assetBundle).tag(Language.pt)
-            }.pickerStyle(.segmented)
-                .padding(.horizontal, 30)
-            
-            Spacer(minLength: 120)
         }
-        .background(bgColor.ignoresSafeArea())
+        
+////            HStack {
+////                if currentPage == 1 {
+////                    Text("onboarding_welcome".localized(userLanguage))
+////                        .font(.title)
+////                        .fontWeight(.semibold)
+////                        .kerning(1.4)
+////                } else {
+////                    Button(action: {
+////                        withAnimation(.easeInOut) {
+////                            currentPage -= 1
+////                        }
+////                    }) {
+////                        Image(systemName: "chevron.left")
+////                            .foregroundColor(.white)
+////                            .padding(.vertical, 10)
+////                            .padding(.horizontal)
+////                            .background(Color.black.opacity(0.4))
+////                            .cornerRadius(10)
+////                    }
+////                }
+////
+////
+////
+////                Spacer()
+////
+////                Button(action: {
+////
+////                    showOnboarding = false
+////                }, label: {
+////                    Text("onboarding_skip".localized(userLanguage))
+////                        .fontWeight(.semibold)
+////                        .kerning(1.2)
+////                })
+////            }
+////            .foregroundColor(.white)
+////            .padding()
+////
+////            Spacer(minLength: 0)
+////
+////            Image("tourmeapplogo")
+////                .resizable()
+////                .aspectRatio(contentMode: .fit)
+////                .shadow(color: .white, radius: 30)
+////                .shadow(color: .white, radius: 30)
+////                .shadow(color: .white, radius: 30)
+////                .padding(10)
+////
+////            Text("settings_choose_language".localized(userLanguage))
+////                .font(.title)
+////                .fontWeight(.bold)
+////                .foregroundColor(.white)
+////                .padding(.top)
+////
+////            Picker("settings_choose_language".localized(userLanguage), selection: $userLanguage) {
+////                Image("US", bundle: FlagKit.assetBundle).tag(Language.en)
+////                Image("ES", bundle: FlagKit.assetBundle).tag(Language.es)
+////                Image("BR", bundle: FlagKit.assetBundle).tag(Language.pt)
+////            }.pickerStyle(.segmented)
+////                .padding(.horizontal, 30)
+////
+////            Spacer(minLength: 120)
+//        }
+        //.background(bgColor.ignoresSafeArea())
     }
 }
 
@@ -304,100 +300,150 @@ struct UserProfileScreenView: View {
     var canSkip: Bool = false
     
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(alignment: .leading,spacing: 20) {
             
-            HStack {
-                
-                if currentPage == 1 {
-                    
-                    Text("onboarding_welcome".localized(userLanguage))
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .kerning(1.4)
-                } else {
-                    
-                    Button(action: {
-                        // changing views...
-                        withAnimation(.easeInOut) {
-                            
-                            currentPage -= 1
-                        }
-                    }) {
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal)
-                            .background(Color.black.opacity(0.4))
-                            .cornerRadius(10)
-                    }
-                }
-                
-                Spacer()
-                
-                if canSkip {
-                    Button(action: {
-                        
-                        showOnboarding = false
-                    }, label: {
-                        Text("onboarding_skip".localized(userLanguage))
-                            .fontWeight(.semibold)
-                            .kerning(1.2)
-                    })
-                }
-            }
-            .padding()
+//            HStack {
+//                
+//                if currentPage == 1 {
+//                    
+//                    Text("onboarding_welcome".localized(userLanguage))
+//                        .font(.title)
+//                        .fontWeight(.semibold)
+//                        .kerning(1.4)
+//                } else {
+//                    
+//                    Button(action: {
+//                        // changing views...
+//                        withAnimation(.easeInOut) {
+//                            
+//                            currentPage -= 1
+//                        }
+//                    }) {
+//                        
+//                        Image(systemName: "chevron.left")
+//                            .foregroundColor(.white)
+//                            .padding(.vertical, 10)
+//                            .padding(.horizontal)
+//                            .background(Color.black.opacity(0.4))
+//                            .cornerRadius(10)
+//                    }
+//                }
+//                
+//                Spacer()
+//                
+//                if canSkip {
+//                    Button(action: {
+//                        
+//                        showOnboarding = false
+//                    }, label: {
+//                        Text("onboarding_skip".localized(userLanguage))
+//                            .fontWeight(.semibold)
+//                            .kerning(1.2)
+//                    })
+//                }
+//            }
+//            .padding()
             
             //Spacer(minLength: 0)
             
-            LottieView(name: "profile3", loopMode: .loop)
-                .frame(width: 200, height: 200)
+            //LottieView(name: "profile3", loopMode: .loop)
+               // .frame(width: 200, height: 200)
             /*
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .padding(10)
              */
-            
-            Text(title)
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.top)
-            
-            Text(detail)
-                .fontWeight(.semibold)
-                .kerning(1.3)
-                .multilineTextAlignment(.center)
-            
-            Group {
-                TextField("onboarding_email".localized(userLanguage), text: $email)
-                    .pretty()
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                TextField("onboarding_phone".localized(userLanguage), text: $phone)
-                    .pretty()
-                    .keyboardType(.phonePad)
-                    .autocapitalization(.none)
-                TextField("onboarding_display_name".localized(userLanguage), text: $displayName)
-                    .pretty()
-                    .keyboardType(.default)
-                    .autocapitalization(.words)
+            HStack {
+                Spacer()
+                ZStack {
+                    Rectangle()
+                      .foregroundColor(.clear)
+                      .frame(width: 183, height: 200)
+                      .background(Color(red: 0.02, green: 0.41, blue: 0.56))
+                      .cornerRadius(31)
+                      .shadow(color: .black.opacity(0.15), radius: 5, x: -4, y: 4)
+                      .rotationEffect(Angle(degrees: 14.83))
+                      .offset(x: 20)
+                      .offset(y: -40)
+                    Rectangle()
+                      .foregroundColor(.clear)
+                      .frame(width: 170, height: 170)
+                      .background(.white)
+                      .cornerRadius(26)
+                      .shadow(color: .black.opacity(0.15), radius: 5, x: -4, y: 4)
+                      .rotationEffect(Angle(degrees: -17.67))
+                      .offset(y: 15)
+                      .offset(x: 60)
+                    Rectangle()
+                      .foregroundColor(.clear)
+                      .frame(width: 148, height: 148)
+                      .background(Color(red: 0.02, green: 0.62, blue: 0.85))
+                      .cornerRadius(26)
+                      .shadow(color: .black.opacity(0.15), radius: 5, x: -4, y: 4)
+                      .rotationEffect(Angle(degrees: 15.07))
+                      .offset(y: 120)
+                      .offset(x: 125)
+
+                    
+                }
             }
-            .padding(.horizontal, 10)
+            VStack(alignment: .leading, spacing: 16, content: {
+                Text(title)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.primary)
+                    .font(.custom(.inriaSansBold, size: 36))
+                    .padding(.top)
+                Text(detail)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.primary)
+                    .font(.custom(.inriaSansRegular, size: 14))
+            }).padding()
+                .offset(y: -120)
+            Group {
+                FloatingLabelTextField($displayName, placeholder: "onboarding_display_name".localized(userLanguage))
+                    .leftView {
+                        Image("user")
+                    }
+                    .foregroundColor(.primary)
+                    .frame(height: 50)
+                FloatingLabelTextField($email, placeholder: "onboarding_email".localized(userLanguage))
+                    .leftView {
+                        Image("mail")
+                    }
+                    .frame(height: 50)
+                    .keyboardType(.emailAddress)
+                FloatingLabelTextField($phone, placeholder: "onboarding_phone".localized(userLanguage))
+                    .leftView {
+                        Image("phone")
+                    }
+                    .frame(height: 50)
+                    .keyboardType(.phonePad)
+//                TextField("onboarding_email".localized(userLanguage), text: $email)
+//                    .pretty()
+//                    .keyboardType(.emailAddress)
+//                    .autocapitalization(.none)
+//                TextField("onboarding_phone".localized(userLanguage), text: $phone)
+//                    .pretty()
+//                    .keyboardType(.phonePad)
+//                    .autocapitalization(.none)
+//                TextField("onboarding_display_name".localized(userLanguage), text: $displayName)
+//                    .pretty()
+//                    .keyboardType(.default)
+//                    .autocapitalization(.words)
+            }
+            .padding(.horizontal, 20)
+            .offset(y: -80)
             .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-            
-            Spacer(minLength: 120)
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
         }
-        .foregroundColor(.white)
-        .background(bgColor.ignoresSafeArea())
-        //.offset(y: -keyboardResponder.currentHeight*0.9)
-        .onAppear {
-            email = userEmail
-            phone = userPhone
-            displayName = userDisplayName
-        }
+        .ignoresSafeArea()
         .onDisappear {
-            saveProfileData()
+            userDisplayName = displayName
+            //saveProfileData()
         }
     }
     
@@ -416,4 +462,4 @@ struct UserProfileScreenView: View {
     }
 }
 
-var totalPages = 5
+var totalPages = 4

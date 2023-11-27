@@ -24,34 +24,34 @@ struct MainView: View {
     var body: some View {
         
         TabView(selection: $menuData.selectedMenu) {
-            
-            HomeContentPager(homeContentViewModel: homeContentViewModel)
-                .tabItem {
-                    Image(systemName: "newspaper.fill")
-                    Text("toolbar_news".localized(userLanguage))
-                }
-                .tag(MenuItem.home)
-            
-            ToursMapView()
-                .tabItem {
-                    Image(systemName: "mappin.and.ellipse")
-                    Text("toolbar_map".localized(userLanguage))
-                }
-                .tag(MenuItem.map)
-            
             LandingView()
                 .tabItem {
-                    Image(systemName: "house.fill")
+                    Image("home")
+                        .renderingMode(.template)
                     Text("toolbar_home".localized(userLanguage))
                 }
                 .tag(MenuItem.newHome)
-            
+            ToursMapView()
+                .tabItem {
+                    Image("map")
+                        .renderingMode(.template)
+                    Text("toolbar_map".localized(userLanguage))
+                }
+                .tag(MenuItem.map)
             ToursGridView()
                 .tabItem {
-                    Image(systemName: "list.triangle")
+                    Image("tour")
+                        .renderingMode(.template)
                     Text("toolbar_tours".localized(userLanguage))
                 }
                 .tag(MenuItem.tours)
+            HomeContentPager(homeContentViewModel: homeContentViewModel)
+                .tabItem {
+                    Image("news")
+                        .renderingMode(.template)
+                    Text("toolbar_news".localized(userLanguage))
+                }
+                .tag(MenuItem.home)
             
             /*
             ToursListView()
@@ -73,19 +73,21 @@ struct MainView: View {
             
             SettingsView(tourViewModel: tourViewModel)
                 .tabItem {
-                    Image(systemName: "ellipsis.circle")
+                    Image("more")
+                        .renderingMode(.template)
                     Text("toolbar_more".localized(userLanguage))
                 }
                 .tag(MenuItem.settings)
             
-        }
+        }.background(Color.white)
         
         // Setting as Environment Object...
         .environmentObject(menuData)
-        .environmentObject(sessionManager)
+        //.environmentObject(sessionManager)
         .environmentObject(userPreferencesStore)
         .environmentObject(tourViewModel)
         .onAppear(perform: {
+            
         })
         //.preferredColorScheme(ColorScheme.dark)
         

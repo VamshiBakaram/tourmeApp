@@ -38,13 +38,15 @@ class TourViewModel: ObservableObject {
         guard let url = URL(string: "https://d3aa37cj97ghel.cloudfront.net/tours_\(userLanguage.rawValue).json") else {
                     return
                 }
+        print("tour url", url)
                 URLSession.shared.dataTask(with: url) { data, response, error in
                     guard let data = data else { return }
                     do {
+                        let json = try JSONSerialization.jsonObject(with: data)
+                        print("tour data", json)
                         let toursData = try JSONDecoder().decode([Tour].self, from: data)
                         DispatchQueue.main.async {
                             self.tours = toursData
-                            
                             self.tours.sort { cur, next in
                                 next.sortOrder ?? 0 > cur.sortOrder ?? 0
                             }

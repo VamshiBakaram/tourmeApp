@@ -87,8 +87,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
          */
         
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        Analytics.logEvent("NEWS_ITEM_PROCESSED", parameters: nil)
-        Analytics.logEvent("NOTIFICATION_PROCESSED", parameters: nil)
+        //Analytics.logEvent("NEWS_ITEM_PROCESSED", parameters: nil)
+        //Analytics.logEvent("NOTIFICATION_PROCESSED", parameters: nil)
     }
     
 }
@@ -118,6 +118,8 @@ struct tourmeappApp: App {
     @ObservedObject var sessionManager = SessionManager()
     @ObservedObject var userPreferencesStore = UserPreferencesStore()
     
+    @State private var isShowFlashView = false
+    
     init() {
         /// Force showOnboarding for testing
         // currentPage = 1
@@ -126,55 +128,64 @@ struct tourmeappApp: App {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         
-        Purchases.debugLogsEnabled = true
-            Purchases.configure(withAPIKey: "AkSrEcjEeIUKMvojMYwjjKygJCXLGeZe")
+        //Purchases.configure(withAPIKey: "AkSrEcjEeIUKMvojMYwjjKygJCXLGeZe")
         
-        configureAmplify()
+        //configureAmplify()
         
         //sessionManager.getCurrentAuthUser()
     }
     
     var body: some Scene {
         WindowGroup {
-            if showOnboarding {
-                
-                OnboardingView()
-                    .environmentObject(userPreferencesStore)
-            } else {
-                
-                switch sessionManager.authState {
-                case .login:
-                    LoginView()
-                        .environmentObject(sessionManager)
-                case .signUp:
-                    SignUpView()
-                        .environmentObject(sessionManager)
-                case .confirmCode(let username):
-                    ConfirmCodeView(username: username)
-                        .environmentObject(sessionManager)
-                case .disabled:
+            if isShowFlashView {
+                if showOnboarding {
+                    OnboardingView()
+                        .environmentObject(userPreferencesStore)
+                }else{
                     MainView()
-                        .environmentObject(sessionManager)
-                case .resetPassword:
-                    ResetPassword()
-                        .environmentObject(sessionManager)
-                case .confirmResetPassword(username: let username):
-                    ConfirmResetPassword(username: username)
-                        .environmentObject(sessionManager)
+//                    switch sessionManager.authState {
+//                    case .login:
+//                        LoginView()
+//                            .environmentObject(sessionManager)
+//                    case .signUp:
+//                        SignUpView()
+//                            .environmentObject(sessionManager)
+//                    case .confirmCode(let username):
+//                        ConfirmCodeView(username: username)
+//                            .environmentObject(sessionManager)
+//                    case .disabled:
+//                        MainView()
+//                            .environmentObject(sessionManager)
+//                    case .resetPassword:
+//                        ResetPassword()
+//                            .environmentObject(sessionManager)
+//                    case .confirmResetPassword(username: let username):
+//                        ConfirmResetPassword(username: username)
+//                            .environmentObject(sessionManager)
+//                    }
                 }
+            }else{
+                SplashView()
+                    .onAppear(perform: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                            withAnimation {
+                                self.isShowFlashView = true
+                            }
+                        })
+                    })
             }
         }
     }
     
-    private func configureAmplify() {
-        do {
-            let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
-            try Amplify.add(plugin: dataStorePlugin)
-            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
-            try Amplify.add(plugin: AWSCognitoAuthPlugin())
-            try Amplify.configure()
-        } catch {
-            print("An error occurred setting up Amplify: \(error)")
-        }
-    }
+//    private func configureAmplify() {
+//        do {
+//            let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+//            try Amplify.add(plugin: dataStorePlugin)
+//            try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: AmplifyModels()))
+//            try Amplify.add(plugin: AWSCognitoAuthPlugin())
+//            try Amplify.configure()
+//        } catch {
+//            print("An error occurred setting up Amplify: \(error)")
+//        }
+//    }
 }

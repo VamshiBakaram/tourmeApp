@@ -2,6 +2,13 @@
 import Amplify
 import Foundation
 
+public struct BusStopModel: Codable {
+    public var items: List<BusStop>?
+    
+    public init(items: List<BusStop>? = nil) {
+        self.items = items
+    }
+}
 public struct BusStop: Model {
   public let id: String
   public var language: Language

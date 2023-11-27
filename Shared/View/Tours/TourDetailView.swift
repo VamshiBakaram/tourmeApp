@@ -63,7 +63,7 @@ struct TourDetailView: View {
             .navigationTitle(tour.name)
             .onAppear {
                 self.busStops.removeAll()
-                self.busStops.append(contentsOf: tour.BusStops?.sorted(by: { cur, next in
+                self.busStops.append(contentsOf: tour.BusStops?.items?.sorted(by: { cur, next in
                     next.name > cur.name
                 }) ?? [BusStop]())
             }

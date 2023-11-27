@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-import SwiftUI
+import Kingfisher
 
 struct BusStopListItemView: View {
     
@@ -17,29 +17,42 @@ struct BusStopListItemView: View {
     @State var showCompact = false
     
     var body: some View {
-        
-        VStack(alignment: .leading) {
-
-            BCGAsyncImage(url: URL(string: stop.thumbnailUrl )!)
+        HStack {
+            KFImage(URL(string: stop.thumbnailUrl)!)
+                .resizable()
+                .frame(width: 101, height: 70)
                 .scaledToFit()
-            
-            Group {
+                .padding(.leading, 12)
+            VStack(alignment: .leading) {
                 Text(stop.name)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .kerning(1.4)
-                    .foregroundColor(Color("PrimaryColor"))
-                
+                  .font(
+                    .custom(.inriaSansBold, size: 14)
+                  )
+                  .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85)) 
+                  .lineLimit(1)
                 Text(stop.description ?? "")
-                    .font(.body)
-                    .kerning(1.2)
+                  .font(
+                    .custom(.inriaSansBold, size: 12)
+                  )
+                  .foregroundColor(Color(red: 0.28, green: 0.28, blue: 0.28))
+                  .lineLimit(1)
+                Spacer()
+                Text("7:45 min")
+                  .font(
+                    .custom(.inriaSansBold, size: 12)
+                  )
+                  .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
             }
-            //.padding(.horizontal)
+            .padding()
+            .onTapGesture {
+                tapAction()
+            }
         }
-        //.frame(width: proxy.size.width)
-        .onTapGesture {
-            tapAction()
-        }
+        .foregroundColor(.clear)
+        .background(.white)
+        .cornerRadius(5)
+        .shadow(color: .black.opacity(0.1), radius: 5, x: 2, y: 2)
+        .padding(.top, 8)
     }
 }
 

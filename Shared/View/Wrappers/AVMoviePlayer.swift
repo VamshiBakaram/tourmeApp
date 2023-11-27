@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import AVKit
-import AVPlayerViewControllerSubtitles
+//import AVPlayerViewControllerSubtitles
 
 struct AVMoviePlayer: UIViewControllerRepresentable {
         
@@ -51,7 +51,7 @@ struct AVMoviePlayer: UIViewControllerRepresentable {
         //avViewController.allowsPictureInPicturePlayback = true
         //avViewController.updatesNowPlayingInfoCenter = true
         
-        avViewController.subtitleLabel?.textColor = .white
+       // avViewController.subtitleLabel?.textColor = .white
         return avViewController
     }
     
@@ -70,7 +70,7 @@ struct AVMoviePlayer: UIViewControllerRepresentable {
              */
             
             if self.subtitleURL != nil {
-                uiViewController.addSubtitles().open(fileFromRemote: self.subtitleURL!)
+               // uiViewController.addSubtitles().open(fileFromRemote: self.subtitleURL!)
                 print(self.subtitleURL!.absoluteString)
             }
             

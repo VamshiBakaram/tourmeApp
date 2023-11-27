@@ -38,7 +38,7 @@ class PlayerViewModel: ObservableObject {
         items.removeAll()
         items.append(AVPlayerItem(url: URL(string: tour.videoUrl!)!))
         
-        tour.BusStops?.forEach({ busStop in
+        tour.BusStops?.items?.forEach({ busStop in
             items.append(AVPlayerItem(url: URL(string: busStop.videoUrl!)!))
         })
         

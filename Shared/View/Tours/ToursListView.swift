@@ -31,7 +31,7 @@ struct ToursListView: View {
                         
                     if #available(iOS 15.0, *) {
                         List(tourViewModel.tours, id: \.id) { tour in
-                            TourListItemView(tour: tour)
+                            TourListItemView(tour: tour, proxy: proxy)
                         }
                         .listStyle(PlainListStyle())
                         .refreshable {
@@ -48,7 +48,7 @@ struct ToursListView: View {
                         }
                     } else {
                         List(tourViewModel.tours, id: \.id) { tour in
-                            TourListItemView(tour: tour)
+                            TourListItemView(tour: tour, proxy: proxy)
                         }
                         .listStyle(PlainListStyle())
                         .navigationBarTitleDisplayMode(.inline)

@@ -3,25 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0033C6452ABB0F4A403761D1 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
-		016D8EBB95EBF719337CA75D /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B687507713AC565751D483 /* AmplifyModels.swift */; };
 		06C366629D7830FD990F86EA /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2B6B12457FD2510CC8F309 /* Language.swift */; };
 		0B72B8D2755846D7E544EF0D /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C66442A77E589C7851B06B /* Tour.swift */; };
-		0CE026A3EA48F5AA5AFF0A92 /* BusStop+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EE328D7FDBB709DEF3761 /* BusStop+Schema.swift */; };
 		146D898F9F817C9E50F81DBD /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE555BFD882B8B5094419296 /* BusStop.swift */; };
-		156C15C4A8987AEC5847E57A /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4261DF08C3E611E9B26244BD /* awsconfiguration.json */; };
-		18DA28826DA43C348375A8C1 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */; };
-		1CE57FBA1BA88F704504F838 /* GeoPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43244BB99712517422B292 /* GeoPoint+Schema.swift */; };
-		261A0107E885CCFE13354432 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
-		2813B0371880108CCDF987B4 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2B6B12457FD2510CC8F309 /* Language.swift */; };
-		2C1FFC218D272E43EC7B7C5E /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2B6B12457FD2510CC8F309 /* Language.swift */; };
-		2CE58FC496ADB0E8CFFD7AC5 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */; };
-		2E07A58E16BF576E10E97469 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C66442A77E589C7851B06B /* Tour.swift */; };
-		329CDD0526CE60514902AF88 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B687507713AC565751D483 /* AmplifyModels.swift */; };
 		40029BA226D9778800129632 /* DefaultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40029BA126D9778800129632 /* DefaultDetailView.swift */; };
 		40029BA526D977D500129632 /* MapPinImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40029BA426D977D500129632 /* MapPinImage.swift */; };
 		400754E828F8F5E9000C366B /* BioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400754E728F8F5E9000C366B /* BioView.swift */; };
@@ -85,41 +73,34 @@
 		40EBE87926C1A5C300273625 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EBE87826C1A5C300273625 /* View+Extensions.swift */; };
 		40FEEBD726BC6C6E0013C173 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEEBD626BC6C6E0013C173 /* String+Extensions.swift */; };
 		433A4756F3F7080C9819967D /* GeoPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43244BB99712517422B292 /* GeoPoint+Schema.swift */; };
-		4CA837B60A545D75A3F2C4BD /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4261DF08C3E611E9B26244BD /* awsconfiguration.json */; };
-		4E694FA7FDD1670FB13E4980 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */; };
-		592B206D28F4556C1AF1B8BD /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
-		5A3B4D2BDCF31AAC541BAD40 /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
-		62AFB7D37694690B9D4EAF6E /* Pods_tourmeapp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD5D55929FAE13D6FF74DC7 /* Pods_tourmeapp__iOS_.framework */; };
-		63672D9FB679E696E82884D6 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B687507713AC565751D483 /* AmplifyModels.swift */; };
+		5897810F97793E3E0005B76D /* Pods_tourmeapp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F9B8BC013E0062EB61C95C /* Pods_tourmeapp__iOS_.framework */; };
 		67AE8356CE905BEF64F63D8F /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
-		6E8DE0467260ABC40ED1A054 /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
 		797DAB3343BD40A314580756 /* GeoPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43244BB99712517422B292 /* GeoPoint+Schema.swift */; };
 		7ABCDF8A5A058946F6F9658C /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B687507713AC565751D483 /* AmplifyModels.swift */; };
+		7B1F08582B0CB5D200D7E4CD /* InriaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F08522B0CB5CE00D7E4CD /* InriaSans-Regular.ttf */; };
+		7B1F08592B0CB5D200D7E4CD /* InriaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F08532B0CB5CF00D7E4CD /* InriaSans-Bold.ttf */; };
+		7B1F085A2B0CB5D200D7E4CD /* InriaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F08542B0CB5D000D7E4CD /* InriaSans-Light.ttf */; };
+		7B1F085B2B0CB5D200D7E4CD /* InriaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F08552B0CB5D000D7E4CD /* InriaSans-BoldItalic.ttf */; };
+		7B1F085C2B0CB5D200D7E4CD /* InriaSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F08562B0CB5D100D7E4CD /* InriaSans-Italic.ttf */; };
+		7B1F085D2B0CB5D200D7E4CD /* InriaSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F08572B0CB5D200D7E4CD /* InriaSans-LightItalic.ttf */; };
+		7B1F08602B0CB64C00D7E4CD /* FontsExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F085F2B0CB64C00D7E4CD /* FontsExtentions.swift */; };
+		7B1F08632B0D02B000D7E4CD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7B1F08622B0D02B000D7E4CD /* FirebaseAnalytics */; };
+		7B1F08652B0D02B000D7E4CD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7B1F08642B0D02B000D7E4CD /* FirebaseCrashlytics */; };
+		7B1F08672B0D02B000D7E4CD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7B1F08662B0D02B000D7E4CD /* FirebaseMessaging */; };
+		7B1F08692B0D02B000D7E4CD /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 7B1F08682B0D02B000D7E4CD /* FirebasePerformance */; };
+		7B5B0EA42B1487EA005E0B4E /* SupportUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5B0EA32B1487EA005E0B4E /* SupportUsView.swift */; };
+		7BA3DA212B0F530D0025B5C1 /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7BA3DA202B0F530D0025B5C1 /* FloatingLabelTextFieldSwiftUI */; };
+		7BA3DA242B0F6F810025B5C1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7BA3DA232B0F6F810025B5C1 /* Kingfisher */; };
+		7BA3DA262B10A5FE0025B5C1 /* OurVisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA3DA252B10A5FE0025B5C1 /* OurVisionView.swift */; };
+		7BC5F2422B147725003AC84B /* MeetOutTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC5F2412B147725003AC84B /* MeetOutTeamView.swift */; };
+		7BC5F2442B148247003AC84B /* MeetOurTeamDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC5F2432B148247003AC84B /* MeetOurTeamDetailsView.swift */; };
 		7DA8245C00B7C9697CE2D696 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2B6B12457FD2510CC8F309 /* Language.swift */; };
-		7ECA9E6E367625B08A820BB7 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4261DF08C3E611E9B26244BD /* awsconfiguration.json */; };
-		800E540E505FDB96AEA00CBA /* GeoPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43244BB99712517422B292 /* GeoPoint+Schema.swift */; };
-		8C1B466BC7229A56BCEF27D7 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4261DF08C3E611E9B26244BD /* awsconfiguration.json */; };
 		8C8BF32C4C783BAAA9F7B97A /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B687507713AC565751D483 /* AmplifyModels.swift */; };
 		8DA58F0FC51A8D758F653BE2 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C66442A77E589C7851B06B /* Tour.swift */; };
-		8E5D9560612BA62BDBBD0398 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C66442A77E589C7851B06B /* Tour.swift */; };
-		8E60438D4888BF15BF2B0D99 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C66442A77E589C7851B06B /* Tour.swift */; };
-		979B0A1AA1D3587E8FE48D0F /* GeoPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43244BB99712517422B292 /* GeoPoint+Schema.swift */; };
-		9DF07E5480A39A89835EAF7C /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C66442A77E589C7851B06B /* Tour.swift */; };
-		A17BB06B7D9CDA6054EBC518 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
-		A8EA7C0828088015E7F86DF2 /* GeoPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43244BB99712517422B292 /* GeoPoint+Schema.swift */; };
 		AB9AFDFAFCEE977A6E082EDA /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
-		AE17155D282AB2B9D7207EA4 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE555BFD882B8B5094419296 /* BusStop.swift */; };
 		BC5A4CFA54EB3761586F17EB /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
 		BE916C534570E8C89355FC3D /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
-		BF263BED0C2088AEEC22370B /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */; };
-		C80B3F24A8C22CEE7E925FAA /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2B6B12457FD2510CC8F309 /* Language.swift */; };
-		D00A1BB82286B278AF1F65F6 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B687507713AC565751D483 /* AmplifyModels.swift */; };
-		D41C9D72838E7FE5CA9DFBFF /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
-		D83755754FE96CDD2E616C91 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4261DF08C3E611E9B26244BD /* awsconfiguration.json */; };
-		DE7372A8F79284DE655D816B /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */; };
 		F37A2BF25F241C2B1C35F196 /* BusStop+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EE328D7FDBB709DEF3761 /* BusStop+Schema.swift */; };
-		F798CA6E9EC1BB8E7EBD4CE8 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2B6B12457FD2510CC8F309 /* Language.swift */; };
-		FC54EE9338CFD4194A403FDF /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,8 +114,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18CCF3D62DEDEDBCE926E7A3 /* Pods-tourmeapp (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tourmeapp (macOS).release.xcconfig"; path = "Target Support Files/Pods-tourmeapp (macOS)/Pods-tourmeapp (macOS).release.xcconfig"; sourceTree = "<group>"; };
-		32514B2AA712B6C67ADD391F /* Pods-tourmeapp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tourmeapp (iOS).release.xcconfig"; path = "Target Support Files/Pods-tourmeapp (iOS)/Pods-tourmeapp (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		40029BA126D9778800129632 /* DefaultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDetailView.swift; sourceTree = "<group>"; };
 		40029BA426D977D500129632 /* MapPinImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinImage.swift; sourceTree = "<group>"; };
 		400754E728F8F5E9000C366B /* BioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioView.swift; sourceTree = "<group>"; };
@@ -208,17 +187,25 @@
 		40EBE87526C19D8800273625 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		40EBE87826C1A5C300273625 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		40FEEBD626BC6C6E0013C173 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		4261DF08C3E611E9B26244BD /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		4EFF2E449BECCD2FF7C2CA3B /* Pods-tourmeapp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tourmeapp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-tourmeapp (iOS)/Pods-tourmeapp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		4730511BC543BD5AAB7BC5E7 /* Pods-tourmeapp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tourmeapp (iOS).release.xcconfig"; path = "Target Support Files/Pods-tourmeapp (iOS)/Pods-tourmeapp (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		517EE328D7FDBB709DEF3761 /* BusStop+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "BusStop+Schema.swift"; path = "amplify/generated/models/BusStop+Schema.swift"; sourceTree = "<group>"; };
 		5C43244BB99712517422B292 /* GeoPoint+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "GeoPoint+Schema.swift"; path = "amplify/generated/models/GeoPoint+Schema.swift"; sourceTree = "<group>"; };
-		8087BF7A4CA7DE292516AEEE /* Pods-tourmeapp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tourmeapp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-tourmeapp (macOS)/Pods-tourmeapp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		7B1F08522B0CB5CE00D7E4CD /* InriaSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-Regular.ttf"; sourceTree = "<group>"; };
+		7B1F08532B0CB5CF00D7E4CD /* InriaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-Bold.ttf"; sourceTree = "<group>"; };
+		7B1F08542B0CB5D000D7E4CD /* InriaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-Light.ttf"; sourceTree = "<group>"; };
+		7B1F08552B0CB5D000D7E4CD /* InriaSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		7B1F08562B0CB5D100D7E4CD /* InriaSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-Italic.ttf"; sourceTree = "<group>"; };
+		7B1F08572B0CB5D200D7E4CD /* InriaSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		7B1F085F2B0CB64C00D7E4CD /* FontsExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsExtentions.swift; sourceTree = "<group>"; };
+		7B5B0EA32B1487EA005E0B4E /* SupportUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportUsView.swift; sourceTree = "<group>"; };
+		7BA3DA252B10A5FE0025B5C1 /* OurVisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurVisionView.swift; sourceTree = "<group>"; };
+		7BC5F2412B147725003AC84B /* MeetOutTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetOutTeamView.swift; sourceTree = "<group>"; };
+		7BC5F2432B148247003AC84B /* MeetOurTeamDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetOurTeamDetailsView.swift; sourceTree = "<group>"; };
+		83F9B8BC013E0062EB61C95C /* Pods_tourmeapp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tourmeapp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E4B62D0C29240B597D93FE /* Pods-tourmeapp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tourmeapp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-tourmeapp (iOS)/Pods-tourmeapp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		9A2B6B12457FD2510CC8F309 /* Language.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Language.swift; path = amplify/generated/models/Language.swift; sourceTree = "<group>"; };
-		9BD5D55929FAE13D6FF74DC7 /* Pods_tourmeapp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tourmeapp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		B0C66442A77E589C7851B06B /* Tour.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Tour.swift; path = amplify/generated/models/Tour.swift; sourceTree = "<group>"; };
 		B7536E0D381749669ABB1D40 /* Tour+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Tour+Schema.swift"; path = "amplify/generated/models/Tour+Schema.swift"; sourceTree = "<group>"; };
-		C4005256235E5D10E99A9532 /* Pods_tourmeapp__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tourmeapp__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B687507713AC565751D483 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = GeoPoint.swift; path = amplify/generated/models/GeoPoint.swift; sourceTree = "<group>"; };
 		EE555BFD882B8B5094419296 /* BusStop.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = BusStop.swift; path = amplify/generated/models/BusStop.swift; sourceTree = "<group>"; };
@@ -229,8 +216,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62AFB7D37694690B9D4EAF6E /* Pods_tourmeapp__iOS_.framework in Frameworks */,
 				407445DC2731A002006A5B55 /* StoreKit.framework in Frameworks */,
+				7B1F08652B0D02B000D7E4CD /* FirebaseCrashlytics in Frameworks */,
+				7BA3DA212B0F530D0025B5C1 /* FloatingLabelTextFieldSwiftUI in Frameworks */,
+				7B1F08692B0D02B000D7E4CD /* FirebasePerformance in Frameworks */,
+				7BA3DA242B0F6F810025B5C1 /* Kingfisher in Frameworks */,
+				7B1F08672B0D02B000D7E4CD /* FirebaseMessaging in Frameworks */,
+				5897810F97793E3E0005B76D /* Pods_tourmeapp__iOS_.framework in Frameworks */,
+				7B1F08632B0D02B000D7E4CD /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,19 +248,9 @@
 			isa = PBXGroup;
 			children = (
 				407445DB2731A002006A5B55 /* StoreKit.framework */,
-				9BD5D55929FAE13D6FF74DC7 /* Pods_tourmeapp__iOS_.framework */,
-				C4005256235E5D10E99A9532 /* Pods_tourmeapp__macOS_.framework */,
+				83F9B8BC013E0062EB61C95C /* Pods_tourmeapp__iOS_.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		26711673692A55FDE6AB354B /* AmplifyConfig */ = {
-			isa = PBXGroup;
-			children = (
-				4261DF08C3E611E9B26244BD /* awsconfiguration.json */,
-				AEE7FD61B8CCF483059D01F1 /* amplifyconfiguration.json */,
-			);
-			name = AmplifyConfig;
 			sourceTree = "<group>";
 		};
 		405518BB286635BC00F136FA /* Lottie */ = {
@@ -289,6 +272,9 @@
 				40711A4026A5F975008F86FC /* ConfirmCodeView.swift */,
 				4032EBF32723EBDA0046D681 /* ResetPassword.swift */,
 				4032EBF52723EBEA0046D681 /* ConfirmResetPassword.swift */,
+				7BC5F2412B147725003AC84B /* MeetOutTeamView.swift */,
+				7BC5F2432B148247003AC84B /* MeetOurTeamDetailsView.swift */,
+				7B5B0EA32B1487EA005E0B4E /* SupportUsView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -309,6 +295,8 @@
 		408D711A2669127500F272A2 = {
 			isa = PBXGroup;
 			children = (
+				7B1F085E2B0CB63900D7E4CD /* Extensions */,
+				7B1F08512B0CB5BD00D7E4CD /* Fonts */,
 				406E0046279208670067DD01 /* Localizable.strings */,
 				40CC52A02704E62700918F88 /* tourmeapp (iOS).entitlements */,
 				408D711F2669127500F272A2 /* Shared */,
@@ -317,7 +305,6 @@
 				408D713A2669127900F272A2 /* Tests iOS */,
 				408D71452669127900F272A2 /* Tests macOS */,
 				408D71282669127900F272A2 /* Products */,
-				26711673692A55FDE6AB354B /* AmplifyConfig */,
 				DE3950F6E81A9A2205376111 /* AmplifyModels */,
 				A487CA324F07C83D3468FD84 /* Pods */,
 				2552F6FDE6EB87F5B527135C /* Frameworks */,
@@ -412,6 +399,7 @@
 				4066382B27937319001FFDC4 /* OnboardingView.swift */,
 				404D75B728C63D7700C06D80 /* LandingView.swift */,
 				400754E728F8F5E9000C366B /* BioView.swift */,
+				7BA3DA252B10A5FE0025B5C1 /* OurVisionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,13 +442,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7B1F08512B0CB5BD00D7E4CD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7B1F08532B0CB5CF00D7E4CD /* InriaSans-Bold.ttf */,
+				7B1F08552B0CB5D000D7E4CD /* InriaSans-BoldItalic.ttf */,
+				7B1F08562B0CB5D100D7E4CD /* InriaSans-Italic.ttf */,
+				7B1F08542B0CB5D000D7E4CD /* InriaSans-Light.ttf */,
+				7B1F08572B0CB5D200D7E4CD /* InriaSans-LightItalic.ttf */,
+				7B1F08522B0CB5CE00D7E4CD /* InriaSans-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7B1F085E2B0CB63900D7E4CD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7B1F085F2B0CB64C00D7E4CD /* FontsExtentions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A487CA324F07C83D3468FD84 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4EFF2E449BECCD2FF7C2CA3B /* Pods-tourmeapp (iOS).debug.xcconfig */,
-				32514B2AA712B6C67ADD391F /* Pods-tourmeapp (iOS).release.xcconfig */,
-				8087BF7A4CA7DE292516AEEE /* Pods-tourmeapp (macOS).debug.xcconfig */,
-				18CCF3D62DEDEDBCE926E7A3 /* Pods-tourmeapp (macOS).release.xcconfig */,
+				91E4B62D0C29240B597D93FE /* Pods-tourmeapp (iOS).debug.xcconfig */,
+				4730511BC543BD5AAB7BC5E7 /* Pods-tourmeapp (iOS).release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -495,18 +502,26 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 408D71512669127900F272A2 /* Build configuration list for PBXNativeTarget "tourmeapp (iOS)" */;
 			buildPhases = (
-				EA0189114C2CCC892C89193D /* [CP] Check Pods Manifest.lock */,
+				262DB4987BB6430A67936B76 /* [CP] Check Pods Manifest.lock */,
 				408D71232669127900F272A2 /* Sources */,
 				408D71242669127900F272A2 /* Frameworks */,
 				408D71252669127900F272A2 /* Resources */,
-				EDC57FB3D62F64F1681C42D3 /* [CP] Embed Pods Frameworks */,
 				408613F826B9E3890036C279 /* ShellScript */,
+				54BDA958DA35E593E4C5E562 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "tourmeapp (iOS)";
+			packageProductDependencies = (
+				7B1F08622B0D02B000D7E4CD /* FirebaseAnalytics */,
+				7B1F08642B0D02B000D7E4CD /* FirebaseCrashlytics */,
+				7B1F08662B0D02B000D7E4CD /* FirebaseMessaging */,
+				7B1F08682B0D02B000D7E4CD /* FirebasePerformance */,
+				7BA3DA202B0F530D0025B5C1 /* FloatingLabelTextFieldSwiftUI */,
+				7BA3DA232B0F6F810025B5C1 /* Kingfisher */,
+			);
 			productName = "tourmeapp (iOS)";
 			productReference = 408D71272669127900F272A2 /* tourmeapp.app */;
 			productType = "com.apple.product-type.application";
@@ -552,8 +567,9 @@
 		408D711B2669127500F272A2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					408D71262669127900F272A2 = {
 						CreatedOnToolsVersion = 12.5;
@@ -579,6 +595,11 @@
 				pt,
 			);
 			mainGroup = 408D711A2669127500F272A2;
+			packageReferences = (
+				7B1F08612B0D02B000D7E4CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7BA3DA1F2B0F530D0025B5C1 /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */,
+				7BA3DA222B0F6F810025B5C1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 408D71282669127900F272A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -595,20 +616,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B1F085D2B0CB5D200D7E4CD /* InriaSans-LightItalic.ttf in Resources */,
+				7B1F08582B0CB5D200D7E4CD /* InriaSans-Regular.ttf in Resources */,
 				408D714D2669127900F272A2 /* Assets.xcassets in Resources */,
-				4CA837B60A545D75A3F2C4BD /* awsconfiguration.json in Resources */,
 				406E0044279208670067DD01 /* Localizable.strings in Resources */,
 				405518C628663CDF00F136FA /* profile3.json in Resources */,
-				2CE58FC496ADB0E8CFFD7AC5 /* amplifyconfiguration.json in Resources */,
-				8C1B466BC7229A56BCEF27D7 /* awsconfiguration.json in Resources */,
-				BF263BED0C2088AEEC22370B /* amplifyconfiguration.json in Resources */,
+				7B1F08592B0CB5D200D7E4CD /* InriaSans-Bold.ttf in Resources */,
+				7B1F085C2B0CB5D200D7E4CD /* InriaSans-Italic.ttf in Resources */,
 				408613F726B9E22D0036C279 /* GoogleService-Info.plist in Resources */,
-				D83755754FE96CDD2E616C91 /* awsconfiguration.json in Resources */,
-				18DA28826DA43C348375A8C1 /* amplifyconfiguration.json in Resources */,
+				7B1F085A2B0CB5D200D7E4CD /* InriaSans-Light.ttf in Resources */,
 				405518C32866385900F136FA /* profile2.json in Resources */,
+				7B1F085B2B0CB5D200D7E4CD /* InriaSans-BoldItalic.ttf in Resources */,
 				405518BD286635EC00F136FA /* profile.json in Resources */,
-				156C15C4A8987AEC5847E57A /* awsconfiguration.json in Resources */,
-				DE7372A8F79284DE655D816B /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,34 +642,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ECA9E6E367625B08A820BB7 /* awsconfiguration.json in Resources */,
-				4E694FA7FDD1670FB13E4980 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		408613F826B9E3890036C279 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
-		};
-		EA0189114C2CCC892C89193D /* [CP] Check Pods Manifest.lock */ = {
+		262DB4987BB6430A67936B76 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -672,7 +670,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EDC57FB3D62F64F1681C42D3 /* [CP] Embed Pods Frameworks */ = {
+		408613F826B9E3890036C279 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+
+";
+		};
+		54BDA958DA35E593E4C5E562 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -704,6 +721,8 @@
 				40711A3D26A5DD4F008F86FC /* SessionManager.swift in Sources */,
 				404D75B828C63D7700C06D80 /* LandingView.swift in Sources */,
 				4060492226FABB20009D86CF /* EmailHelper.swift in Sources */,
+				7B5B0EA42B1487EA005E0B4E /* SupportUsView.swift in Sources */,
+				7BC5F2442B148247003AC84B /* MeetOurTeamDetailsView.swift in Sources */,
 				405858DC266A985400832541 /* ToursListView.swift in Sources */,
 				4066382C27937319001FFDC4 /* OnboardingView.swift in Sources */,
 				409A531726F4DF7F00B535A3 /* UserPreferencesStore.swift in Sources */,
@@ -717,10 +736,12 @@
 				40711A3F26A5F4C6008F86FC /* LoginView.swift in Sources */,
 				40711A4126A5F975008F86FC /* ConfirmCodeView.swift in Sources */,
 				405858E5266A987900832541 /* TourListItemView.swift in Sources */,
+				7BC5F2422B147725003AC84B /* MeetOutTeamView.swift in Sources */,
 				408D71492669127900F272A2 /* tourmeappApp.swift in Sources */,
 				4032EBF42723EBDA0046D681 /* ResetPassword.swift in Sources */,
 				405858E8266A98A400832541 /* TourViewModel.swift in Sources */,
 				40AA16A526BDAE3F001E7E7F /* ToursMapView.swift in Sources */,
+				7B1F08602B0CB64C00D7E4CD /* FontsExtentions.swift in Sources */,
 				40E7219C266A70E70039157F /* SplashView.swift in Sources */,
 				4047057D2723B5560042DED3 /* HomeContentPager.swift in Sources */,
 				405F87702794B9E000A905CA /* ToursGridView.swift in Sources */,
@@ -743,40 +764,21 @@
 				8DA58F0FC51A8D758F653BE2 /* Tour.swift in Sources */,
 				405F87722795271D00A905CA /* UIDevice+Extensions.swift in Sources */,
 				40AA169F26BD83E7001E7E7F /* BusStopListItemView.swift in Sources */,
-				63672D9FB679E696E82884D6 /* AmplifyModels.swift in Sources */,
 				404705742723AB7C0042DED3 /* LiveStream.swift in Sources */,
-				800E540E505FDB96AEA00CBA /* GeoPoint+Schema.swift in Sources */,
-				A17BB06B7D9CDA6054EBC518 /* GeoPoint.swift in Sources */,
 				4041DFAD270B5DB5002EC240 /* LiveStreamView.swift in Sources */,
 				404705772723AB7C0042DED3 /* LiveStream+Schema.swift in Sources */,
+				7BA3DA262B10A5FE0025B5C1 /* OurVisionView.swift in Sources */,
 				4047057F2723B8840042DED3 /* HomeContentItemView.swift in Sources */,
-				C80B3F24A8C22CEE7E925FAA /* Language.swift in Sources */,
 				40FEEBD726BC6C6E0013C173 /* String+Extensions.swift in Sources */,
 				40440560272E3B5F00E04090 /* Purchase.swift in Sources */,
-				5A3B4D2BDCF31AAC541BAD40 /* Tour+Schema.swift in Sources */,
 				400754E828F8F5E9000C366B /* BioView.swift in Sources */,
-				2E07A58E16BF576E10E97469 /* Tour.swift in Sources */,
 				405E903E26C587190004E083 /* SettingsView.swift in Sources */,
-				D00A1BB82286B278AF1F65F6 /* AmplifyModels.swift in Sources */,
 				408A59DA2866595A00467BB0 /* UserProfile.swift in Sources */,
 				406E004C27920B600067DD01 /* LocalizationService.swift in Sources */,
 				F37A2BF25F241C2B1C35F196 /* BusStop+Schema.swift in Sources */,
 				146D898F9F817C9E50F81DBD /* BusStop.swift in Sources */,
 				400ABF94287CDD5E000CCC79 /* KeyboardResponder.swift in Sources */,
-				1CE57FBA1BA88F704504F838 /* GeoPoint+Schema.swift in Sources */,
-				0033C6452ABB0F4A403761D1 /* GeoPoint.swift in Sources */,
-				F798CA6E9EC1BB8E7EBD4CE8 /* Language.swift in Sources */,
 				406E003F2790C7A70067DD01 /* S3ViewModel.swift in Sources */,
-				D41C9D72838E7FE5CA9DFBFF /* Tour+Schema.swift in Sources */,
-				8E60438D4888BF15BF2B0D99 /* Tour.swift in Sources */,
-				329CDD0526CE60514902AF88 /* AmplifyModels.swift in Sources */,
-				0CE026A3EA48F5AA5AFF0A92 /* BusStop+Schema.swift in Sources */,
-				AE17155D282AB2B9D7207EA4 /* BusStop.swift in Sources */,
-				979B0A1AA1D3587E8FE48D0F /* GeoPoint+Schema.swift in Sources */,
-				261A0107E885CCFE13354432 /* GeoPoint.swift in Sources */,
-				2813B0371880108CCDF987B4 /* Language.swift in Sources */,
-				FC54EE9338CFD4194A403FDF /* Tour+Schema.swift in Sources */,
-				8E5D9560612BA62BDBBD0398 /* Tour.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,12 +801,6 @@
 				7DA8245C00B7C9697CE2D696 /* Language.swift in Sources */,
 				AB9AFDFAFCEE977A6E082EDA /* Tour+Schema.swift in Sources */,
 				0B72B8D2755846D7E544EF0D /* Tour.swift in Sources */,
-				016D8EBB95EBF719337CA75D /* AmplifyModels.swift in Sources */,
-				A8EA7C0828088015E7F86DF2 /* GeoPoint+Schema.swift in Sources */,
-				592B206D28F4556C1AF1B8BD /* GeoPoint.swift in Sources */,
-				2C1FFC218D272E43EC7B7C5E /* Language.swift in Sources */,
-				6E8DE0467260ABC40ED1A054 /* Tour+Schema.swift in Sources */,
-				9DF07E5480A39A89835EAF7C /* Tour.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +832,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -866,9 +864,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -883,7 +883,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -896,6 +896,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -926,9 +928,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -937,7 +941,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -947,16 +951,19 @@
 		};
 		408D71522669127900F272A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EFF2E449BECCD2FF7C2CA3B /* Pods-tourmeapp (iOS).debug.xcconfig */;
+			baseConfigurationReference = 91E4B62D0C29240B597D93FE /* Pods-tourmeapp (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "tourmeapp (iOS).entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1602;
 				DEVELOPMENT_TEAM = FHXYTGS22K;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tourme;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,6 +972,7 @@
 				MARKETING_VERSION = 1.1.1602;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tourmeapp.tourmeappisrael;
 				PRODUCT_NAME = tourmeapp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -973,16 +981,19 @@
 		};
 		408D71532669127900F272A2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32514B2AA712B6C67ADD391F /* Pods-tourmeapp (iOS).release.xcconfig */;
+			baseConfigurationReference = 4730511BC543BD5AAB7BC5E7 /* Pods-tourmeapp (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "tourmeapp (iOS).entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1602;
 				DEVELOPMENT_TEAM = FHXYTGS22K;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tourme;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -991,6 +1002,7 @@
 				MARKETING_VERSION = 1.1.1602;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tourmeapp.tourmeappisrael;
 				PRODUCT_NAME = tourmeapp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1049,6 +1061,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 5YLJBMBLTJ;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1071,6 +1084,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 5YLJBMBLTJ;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1127,6 +1141,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7B1F08612B0D02B000D7E4CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.18.0;
+			};
+		};
+		7BA3DA1F2B0F530D0025B5C1 /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishanraja/FloatingLabelTextFieldSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		7BA3DA222B0F6F810025B5C1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7B1F08622B0D02B000D7E4CD /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B1F08612B0D02B000D7E4CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		7B1F08642B0D02B000D7E4CD /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B1F08612B0D02B000D7E4CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		7B1F08662B0D02B000D7E4CD /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B1F08612B0D02B000D7E4CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		7B1F08682B0D02B000D7E4CD /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B1F08612B0D02B000D7E4CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		7BA3DA202B0F530D0025B5C1 /* FloatingLabelTextFieldSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BA3DA1F2B0F530D0025B5C1 /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */;
+			productName = FloatingLabelTextFieldSwiftUI;
+		};
+		7BA3DA232B0F6F810025B5C1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BA3DA222B0F6F810025B5C1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 408D711B2669127500F272A2 /* Project object */;
 }

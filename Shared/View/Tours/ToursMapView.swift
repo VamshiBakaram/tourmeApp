@@ -28,46 +28,48 @@ struct ToursMapView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 31.79, longitude: 35.09), span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0))
     
     var body: some View {
-        
-        if tourViewModel.error != nil {
-            
-            NoInternetView(tourViewModel: tourViewModel)
-            
-         } else {
-            
-             Map(coordinateRegion: $region, annotationItems: tourViewModel.tours) { tour in
-                 MapAnnotation(coordinate: tour.coordinate) {
-                     MapPinImage()
-                         .onTapGesture {
-                             tourViewModel.selectedTour = tour
-                             tourViewModel.isShowingSelectedTour = true
-                         }
-                 }
-             }
-             /*
-             .navigationBarTitleDisplayMode(.inline)
-             .navigationTitle("maps_title".localized(userLanguage))
-             .toolbar {
-                 Button(action: {
-                     tourViewModel.loadTours(userLanguage: userLanguage)
-                 }, label: {
-                     Image(systemName: "arrow.clockwise.circle.fill")
-                 })
-             }
-              */
-             .overlay(
-                 
-                 ZStack {
-                     if tourViewModel.isShowingSelectedTour {
-                         TourPlayerView(tour: tourViewModel.selectedTour!)
+        VStack(alignment: .leading) {
+            Text("Maps")
+                .font(.custom(.inriaSansBold, size: 20))
+                .padding(.horizontal)
+                .padding(.vertical, 4)
+            if tourViewModel.error != nil {
+                NoInternetView(tourViewModel: tourViewModel)
+             } else {
+                 Map(coordinateRegion: $region, annotationItems: tourViewModel.tours) { tour in
+                     MapAnnotation(coordinate: tour.coordinate) {
+                         MapPinImage()
+                             .onTapGesture {
+                                 tourViewModel.selectedTour = tour
+                                 tourViewModel.isShowingSelectedTour = true
+                             }
                      }
                  }
-             )
-            .onAppear {
-                MKMapView.appearance().mapType = .hybrid
-                
-                if tourViewModel.tours.count == 0 && !tourViewModel.isLoading {
-                    tourViewModel.loadTours(userLanguage: userLanguage)
+                 /*
+                 .navigationBarTitleDisplayMode(.inline)
+                 .navigationTitle("maps_title".localized(userLanguage))
+                 .toolbar {
+                     Button(action: {
+                         tourViewModel.loadTours(userLanguage: userLanguage)
+                     }, label: {
+                         Image(systemName: "arrow.clockwise.circle.fill")
+                     })
+                 }
+                  */
+                 .overlay(
+                     
+                     ZStack {
+                         if tourViewModel.isShowingSelectedTour {
+                             TourPlayerView(tour: tourViewModel.selectedTour!)
+                         }
+                     }
+                 )
+                .onAppear {
+                    MKMapView.appearance().mapType = .hybrid
+                    
+                    if tourViewModel.tours.count == 0 && !tourViewModel.isLoading {
+                        tourViewModel.loadTours(userLanguage: userLanguage)
+                    }
                 }
             }
         }

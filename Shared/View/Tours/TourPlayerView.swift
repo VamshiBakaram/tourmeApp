@@ -13,7 +13,8 @@ import StoreKit
 struct TourPlayerView: View {
     
     @State private var orientation = UIDeviceOrientation.unknown
-    
+    @Environment(\.presentationMode) var presentationMode
+
     /*
     @AppStorage("requestReviewCounter") var requestReviewCounter: Int = 0
     @Environment(\.requestReview) var requestReview
@@ -55,128 +56,139 @@ struct TourPlayerView: View {
                 
         GeometryReader { proxy in
             
-            VStack(spacing: 10) {
+            VStack {
+//                HStack {
+//                    Button(action: {
+//                        tourViewModel.isShowingSelectedTour = false
+//                    }) {
+//                        
+//                        Image(systemName: "chevron.left")
+//                            .foregroundColor(Color.white)
+//                            .padding(.vertical, 10)
+//                            .padding(.horizontal)
+//                            .background(Color("AccentColor"))
+//                            .cornerRadius(10)
+//                    }
+//                    .padding()
+//                                        
+//                    if UIDevice.isIPad {
+//                        Text(tour.name)
+//                            .font(.largeTitle)
+//                            .fontWeight(.heavy)
+//                            .kerning(1.4)
+//                            .foregroundColor(Color("PrimaryColor"))
+//                    }
+//                    
+//                    Spacer()
+//                    
+//                    HStack {
+//                        Text("Subtitles:")
+//                            .kerning(1.2)
+//                        Picker("Selected subtitle \(selectedSubtitle)", selection: $selectedSubtitle) {
+//                            ForEach(-1..<self.subtitleURLs.count, id: \.self) { i in
+//                                if i == -1 {
+//                                    Text("Off").tag("Off")
+//                                } else {
+//                                    //Image(self.subtitleURLs[i].absoluteString.components(separatedBy: ".")[4].components(separatedBy: "_")[1], bundle: FlagKit.assetBundle).tag(self.subtitleURLs[i].absoluteString)
+//                                    
+//                                    Text(self.subtitleURLs[i].absoluteString.components(separatedBy: ".")[4].components(separatedBy: "_")[1]).tag(self.subtitleURLs[i].absoluteString)
+//                                }
+//                                
+//                            }
+//                        }
+//                        .pickerStyle(.menu)
+//                    }
+//                    .padding(.horizontal)
+//                }
+//                .frame(maxWidth: .infinity)
+                
+//                if UIDevice.isIPad { // && UIDevice.current.orientation.isLandscape {
+//                    
+//                    HStack(alignment: .top) {
+//                        
+//                        VStack {
+//                            
+//                            AVMoviePlayer(player: self.player, useSubtitles: self.useSubtitles, selectedSubtitle: self.selectedSubtitle, currentUrl: self.currentUrl)
+//                                .frame(width: proxy.size.width / 2, height: proxy.size.width / 2 / 1.78)
+//                            
+//                            Group {
+//                                Text(tour.description ?? "")
+//                                    .font(.body)
+//                                    .kerning(1.2)
+//                            }
+//                        }
+//                        .frame(minWidth: 0, maxWidth: .infinity)
+//                        
+//                        ScrollView(.vertical) {
+//                            
+//                            VStack(alignment: .leading) {
+//                                
+//                                ForEach(0..<self.busStops.count, id: \.self) { i in
+//                                    BusStopListItemView(tapAction: {
+//                                        
+//                                        s3ViewModel.loadSubtitles(tourName: self.tour.name, video: "\(i+1)") { results, error in
+//                                            print(results)
+//                                            //self.isPlaying = false
+//                                            self.player?.pause()
+//                                            self.player = nil
+//                                            self.currentUrl = URL(string: tour.videoUrl!)
+//                                            
+//                                            self.subtitleURLs = results.compactMap({ subtitle in
+//                                                URL(string: subtitle.subtitleUrl)
+//                                            })
+//                                            
+//                                            self.createPlayer(url: URL(string: self.busStops[i].videoUrl!), subtitleURLs: results.compactMap({ subtitle in
+//                                                URL(string: subtitle.subtitleUrl)
+//                                            }))
+//                                            self.player?.play()
+//                                        }
+//                                    }, stop: self.busStops[i], showCompact: proxy.size.width < 500)
+//                                        .alert(isPresented: $isShowingNoPurchaseHistory) {
+//                                            Alert(
+//                                                title: Text("Cannot find valid purchase history"),
+//                                                message: Text("Please make a purchase at tourmeapp.net or contact support for help. If you just purchased, please try again in a few minutes."),
+//                                                primaryButton: .destructive(Text("Purchase Now")) {
+//                                                    sessionManager.signOut()
+//                                                },
+//                                                secondaryButton: .cancel()
+//                                            )
+//                                        }
+//                                }
+//                            }
+//                        }
+//                        .frame(minWidth: 0, maxWidth: .infinity)
+//                        
+//                    }
+//                    
+//                } else {
                 HStack {
                     Button(action: {
-                        tourViewModel.isShowingSelectedTour = false
-                    }) {
-                        
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal)
-                            .background(Color("AccentColor"))
-                            .cornerRadius(10)
-                    }
-                    .padding()
-                                        
-                    if UIDevice.isIPad {
-                        Text(tour.name)
-                            .font(.largeTitle)
-                            .fontWeight(.heavy)
-                            .kerning(1.4)
-                            .foregroundColor(Color("PrimaryColor"))
-                    }
-                    
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Image("back (3)")
+                    })
+                    Text("Our Vision")
+                        .font(.custom(.inriaSansRegular, size: 20))
+                        .fontWeight(.bold)
                     Spacer()
-                    
-                    HStack {
-                        Text("Subtitles:")
-                            .kerning(1.2)
-                        Picker("Selected subtitle \(selectedSubtitle)", selection: $selectedSubtitle) {
-                            ForEach(-1..<self.subtitleURLs.count, id: \.self) { i in
-                                if i == -1 {
-                                    Text("Off").tag("Off")
-                                } else {
-                                    //Image(self.subtitleURLs[i].absoluteString.components(separatedBy: ".")[4].components(separatedBy: "_")[1], bundle: FlagKit.assetBundle).tag(self.subtitleURLs[i].absoluteString)
-                                    
-                                    Text(self.subtitleURLs[i].absoluteString.components(separatedBy: ".")[4].components(separatedBy: "_")[1]).tag(self.subtitleURLs[i].absoluteString)
-                                }
-                                
-                            }
-                        }
-                        .pickerStyle(.menu)
-                    }
-                    .padding(.horizontal)
                 }
-                .frame(maxWidth: .infinity)
-                
-                if UIDevice.isIPad { // && UIDevice.current.orientation.isLandscape {
-                    
-                    HStack(alignment: .top) {
-                        
-                        VStack {
-                            
-                            AVMoviePlayer(player: self.player, useSubtitles: self.useSubtitles, selectedSubtitle: self.selectedSubtitle, currentUrl: self.currentUrl)
-                                .frame(width: proxy.size.width / 2, height: proxy.size.width / 2 / 1.78)
-                            
-                            Group {
-                                Text(tour.description ?? "")
-                                    .font(.body)
-                                    .kerning(1.2)
-                            }
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        
-                        ScrollView(.vertical) {
-                            
-                            VStack(alignment: .leading) {
-                                
-                                ForEach(0..<self.busStops.count, id: \.self) { i in
-                                    BusStopListItemView(tapAction: {
-                                        
-                                        s3ViewModel.loadSubtitles(tourName: self.tour.name, video: "\(i+1)") { results, error in
-                                            print(results)
-                                            //self.isPlaying = false
-                                            self.player?.pause()
-                                            self.player = nil
-                                            self.currentUrl = URL(string: tour.videoUrl!)
-                                            
-                                            self.subtitleURLs = results.compactMap({ subtitle in
-                                                URL(string: subtitle.subtitleUrl)
-                                            })
-                                            
-                                            self.createPlayer(url: URL(string: self.busStops[i].videoUrl!), subtitleURLs: results.compactMap({ subtitle in
-                                                URL(string: subtitle.subtitleUrl)
-                                            }))
-                                            self.player?.play()
-                                        }
-                                    }, stop: self.busStops[i], showCompact: proxy.size.width < 500)
-                                        .alert(isPresented: $isShowingNoPurchaseHistory) {
-                                            Alert(
-                                                title: Text("Cannot find valid purchase history"),
-                                                message: Text("Please make a purchase at tourmeapp.net or contact support for help. If you just purchased, please try again in a few minutes."),
-                                                primaryButton: .destructive(Text("Purchase Now")) {
-                                                    sessionManager.signOut()
-                                                },
-                                                secondaryButton: .cancel()
-                                            )
-                                        }
-                                }
-                            }
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        
-                    }
-                    
-                } else {
+                .padding()
                     AVMoviePlayer(player: self.player, useSubtitles: self.useSubtitles, selectedSubtitle: self.selectedSubtitle, currentUrl: self.currentUrl)
                         .frame(width: proxy.size.width, height: proxy.size.width / 1.78)
                     
                     ScrollView(.vertical) {
                         
                         VStack(alignment: .leading) {
-                            Group {
-                                Text(tour.name)
-                                    .font(.largeTitle)
-                                    .fontWeight(.heavy)
-                                    .kerning(1.4)
-                                    .foregroundColor(Color("PrimaryColor"))
-                                
-                                Text(tour.description ?? "")
-                                    .font(.body)
-                                    .kerning(1.2)
-                            }
+                            Text(tour.name)
+                              .font(
+                                .custom(.inriaSansBold, size: 20)
+                              )
+                              .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85))
+                            Text(tour.description ?? "")
+                              .font(
+                                .custom(.inriaSansBold, size: 14)
+                              )
+                              .foregroundColor(Color(red: 0.28, green: 0.28, blue: 0.28))
                             
                             ForEach(0..<self.busStops.count, id: \.self) { i in
                                 BusStopListItemView(tapAction: {
@@ -209,16 +221,15 @@ struct TourPlayerView: View {
                                         )
                                     }
                             }
-                        }
+                        }.padding(.horizontal)
                     }
-                }
+                //}
             }
             .background(colorScheme == .dark ? Color.black : Color.white)
             .onAppear( perform: {
-                
                 s3ViewModel.loadSubtitles(tourName: self.tour.name, video: "0") { results, error in
                     self.busStops.removeAll()
-                    self.busStops.append(contentsOf: tour.BusStops?.sorted(by: { cur, next in
+                    self.busStops.append(contentsOf: tour.BusStops?.items?.sorted(by: { cur, next in
                         cur.name < next.name
                     }) ?? [BusStop]())
                     
@@ -232,9 +243,9 @@ struct TourPlayerView: View {
                 }
             })
             .phoneOnlyStackNavigationView()
-            .onRotate { newOrientation in
-                        orientation = newOrientation
-                    }
+//            .onRotate { newOrientation in
+//                        orientation = newOrientation
+//                    }
             
             
         }
@@ -252,7 +263,7 @@ struct TourPlayerView: View {
         items.removeAll()
         items.append(AVPlayerItem(url: URL(string: tour.videoUrl!)!))
         
-        tour.BusStops?.forEach({ busStop in
+        tour.BusStops?.items?.forEach({ busStop in
             items.append(AVPlayerItem(url: URL(string: busStop.videoUrl!)!))
         })
         
