@@ -1,0 +1,6 @@
+framework module PayPal {
+  umbrella header "PayPal-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -30,12 +30,16 @@ struct HomeContentItemView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                
-                Text(homeContent.title)
-                    .font(.custom(.inriaSansBold, size: 22))
-                    .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85))
-                    .frame(alignment: .leading)
-                    .padding(.vertical)
+                ZStack(alignment: .leading) {
+                    Image("image_2023")
+                    Text(homeContent.title)
+                        .font(.custom(.inriaSansBold, size: 22))
+                        .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85))
+                        .frame(alignment: .leading)
+                        .padding(.vertical)
+                        .padding(.leading, 20)
+                        .multilineTextAlignment(.leading)
+                }
                 Text(homeContent.description)
                     .font(.custom(.inriaSansBold, size: 16))
                     .foregroundColor(.primary)

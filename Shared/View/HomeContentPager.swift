@@ -21,7 +21,7 @@ struct HomeContentPager: View {
         
     var body: some View {
         VStack(alignment: .leading) {
-            Text("News")
+            Text("News".localized(userLanguage))
                 .font(.custom(.inriaSansBold, size: 20))
                 .padding(.horizontal)
                 .padding(.vertical, 4)

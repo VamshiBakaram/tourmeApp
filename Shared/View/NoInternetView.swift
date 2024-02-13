@@ -25,7 +25,7 @@ struct NoInternetView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
             
             Button {
-                tourViewModel.loadTours(userLanguage: userLanguage)
+                //tourViewModel.loadTours(userLanguage: userLanguage)
             } label: {
                 Text("no_internet_retry".localized(userLanguage))
                     .foregroundColor(.black)

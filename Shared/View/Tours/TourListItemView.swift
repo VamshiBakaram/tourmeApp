@@ -62,7 +62,7 @@ struct TourListItemView: View {
 }
 
 struct TourListItemView_Previews: PreviewProvider {
-    static var tour = Tour(language: Language.en, name: "Sample Tour", enabled: true, position: GeoPoint(lat: 31.004, lon: 30.002), thumbnailUrl: "https://tourmeapp.net/wp-content/uploads/elementor/thumbs/tourmeapp_logo_redesign_02-p3l46b1nc03i4bowhb80urf0xehaycgnriz3gt0t1c.png")
+    static var tour = Tour(language: "EN", name: "Sample Tour", enabled: true, position: GeoPoint(lat: 31.004, lon: 30.002), thumbnailUrl: "https://tourmeapp.net/wp-content/uploads/elementor/thumbs/tourmeapp_logo_redesign_02-p3l46b1nc03i4bowhb80urf0xehaycgnriz3gt0t1c.png")
 
     static var previews: some View {
         GeometryReader { reader in

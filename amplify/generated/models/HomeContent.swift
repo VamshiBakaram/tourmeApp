@@ -4,7 +4,7 @@ import Foundation
 
 public struct HomeContent: Model {
   public let id: String
-  public var language: Language
+  public var language: String
   public var title: String
   public var description: String
   public var thumbnailUrl: String
@@ -17,7 +17,7 @@ public struct HomeContent: Model {
   public var updatedAt: Temporal.DateTime?
   
   public init(id: String = UUID().uuidString,
-      language: Language,
+      language: String,
       title: String,
       description: String,
       thumbnailUrl: String,
@@ -40,7 +40,7 @@ public struct HomeContent: Model {
       updatedAt: nil)
   }
   internal init(id: String = UUID().uuidString,
-      language: Language,
+      language: String,
       title: String,
       description: String,
       thumbnailUrl: String,

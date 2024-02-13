@@ -134,6 +134,24 @@
         "revision" : "07f7f26ded8df9645c072f220378879c4642e063",
         "version" : "1.25.1"
       }
+    },
+    {
+      "identity" : "toastswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/huynguyencong/ToastSwiftUI.git",
+      "state" : {
+        "revision" : "dd9421d487c7f932c39604fc04b3381e9176ef13",
+        "version" : "0.3.6"
+      }
+    },
+    {
+      "identity" : "youtubeplayerkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SvenTiigi/YouTubePlayerKit",
+      "state" : {
+        "revision" : "ca8f0cd89d63d6f5e5cb556b0dd30cd65632bc3a",
+        "version" : "1.7.0"
+      }
     }
   ],
   "version" : 2

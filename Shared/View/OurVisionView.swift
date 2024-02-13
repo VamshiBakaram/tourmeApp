@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct OurVisionView: View {
+    
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("userLanguage") var userLanguage: Language = .en
+    
     var body: some View {
         GeometryReader { reader in
             VStack(alignment: .leading) {
@@ -16,23 +20,52 @@ struct OurVisionView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image("back (3)")
+                        Image(colorScheme == .light ? "back (3)" : "back (4)")
                     })
-                    Text("Our Vision")
-                        .font(.custom(.inriaSansRegular, size: 20))
+                    Text("Our Vision".localized(userLanguage))
+                        .font(.custom(.inriaSansRegular, size: 22))
                         .fontWeight(.bold)
                     Spacer()
                 }
                 .padding()
-                ScrollView {
-                    Text("As people who love The Bible, the\nWord of God,\nand the fascinating history of the\nJewish people,\nwe have decided to be the first\nplatform that brings\nall of the above directly to you.\n\nWhether you have visited Israel,\nplanning on visiting Israel,\nor for whatever reason won’t be\nable to visit the Land,\nthe app will connect you with The\nHebrew\nBible and The Greek Text at any\ngiven time.\n\nOur dream is to spread the word to\nall four corners of the world.\nThe more people will be exposed to\nThe Word,\nthe closer this will take us to the\nbetter world that we all aspire for")
+                ZStack(alignment: .leading) {
+                    Image("image_2023")
+                    Text("Tourme App Israel")
+                        .font(.custom(.inriaSansBold, size: 22))
+                        .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85))
+                        .frame(alignment: .leading)
+                        .padding(.leading, 20)
                         .multilineTextAlignment(.leading)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                        .font(.custom(.inriaSansRegular, size: 16))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(red: 0.28, green: 0.28, blue: 0.28))
-                        .padding(.vertical, 16)
-                        .padding(.horizontal, 20)
+                }.padding(.horizontal, 20)
+                ScrollView {
+                    VStack {
+                        Text("As people who love The Bible, the Word of God,and the fascinating history of the Jewish people,we have decided to be the first platform that brings all of the above directly to you".localized(userLanguage))
+                            .multilineTextAlignment(.leading)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .font(.custom(.inriaSansRegular, size: 18))
+                            .fontWeight(.bold)
+                            .foregroundColor(colorScheme == .dark ? .white : Color(red: 0.28, green: 0.28, blue: 0.28))
+                            .padding(.horizontal, 20)
+                        ZStack {
+                            Image(colorScheme == .dark ? "israel-flag 1" : "Group 37")
+                                .resizable()
+                                .frame(height: 200)
+                            Text("Whether you have visited Israel,\nplanning on visiting Israel,\nor for whatever reason won’t be\nable to visit the Land,\nthe app will connect you with The\nHebrew\nBible and The Greek Text at any\ngiven time.".localized(userLanguage))
+                                .multilineTextAlignment(.leading)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .font(.custom(.inriaSansRegular, size: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(colorScheme == .dark ? .white : Color(red: 0.28, green: 0.28, blue: 0.28))
+                                .padding(.horizontal, 20)
+                        }
+                        Text("Our dream is to spread the word to all four corners of the world. The more people will be exposed to The Word,the closer this will take us to the better world that we all aspire for".localized(userLanguage))
+                            .multilineTextAlignment(.leading)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .font(.custom(.inriaSansRegular, size: 18))
+                            .fontWeight(.bold)
+                            .foregroundColor(colorScheme == .dark ? .white : Color(red: 0.28, green: 0.28, blue: 0.28))
+                            .padding(.horizontal, 20)
+                    }
                 }
                 .frame(width: reader.size.width)
             }

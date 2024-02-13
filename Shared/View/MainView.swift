@@ -6,9 +6,35 @@
 //
 
 import SwiftUI
+import UIKit
 import Amplify
 
 struct MainView: View {
+    @Environment(\.colorScheme) var colorScheme
+
+    init() {
+        if #available(iOS 15.0, *) {
+            
+//            let appearance = UITabBarAppearance()
+//            appearance.configureWithOpaqueBackground()
+//            appearance.backgroundColor = UIColor.white
+//
+//            UITabBar.appearance().standardAppearance = appearance
+//            UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
+            //UITabBar.appearance().barTintColor = (colorScheme == .dark ? UIColor(red: 0.28, green: 0.28, blue: 0.28, alpha: 1) : UIColor.white)
+            if #available(iOS 13.0, *) {
+                if UITraitCollection.current.userInterfaceStyle == .dark {
+                    UITabBar.appearance().unselectedItemTintColor = .white
+                    UITabBar.appearance().backgroundColor = UIColor(displayP3Red: 72/255, green: 72/255, blue: 72/255, alpha: 1)
+                }
+                else {
+                    UITabBar.appearance().unselectedItemTintColor = .black
+                    UITabBar.appearance().backgroundColor = UIColor.white
+                }
+            }
+            //UITabBar.appearance().tintColor = UIColor.red
+        }
+    }
     
     @AppStorage("userLanguage") var userLanguage: Language = .en
     
@@ -71,7 +97,7 @@ struct MainView: View {
                 .tag(MenuItem.live)
              */
             
-            SettingsView(tourViewModel: tourViewModel)
+            SettingsView()
                 .tabItem {
                     Image("more")
                         .renderingMode(.template)
@@ -79,7 +105,7 @@ struct MainView: View {
                 }
                 .tag(MenuItem.settings)
             
-        }.background(Color.white)
+        }
         
         // Setting as Environment Object...
         .environmentObject(menuData)

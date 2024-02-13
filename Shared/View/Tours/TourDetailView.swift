@@ -32,7 +32,10 @@ struct TourDetailView: View {
                         .aspectRatio(contentMode: .fit)
                         .overlay(VStack {
                             NavigationLink(
-                                destination: TourPlayerView(tour: tour),
+                                destination: 
+                                    Text("Start Tour")
+                                   // TourPlayerView(tour: tour)
+                                ,
                                 label: {
                                     Text("Start Tour")
                                         .foregroundColor(.black)
@@ -78,7 +81,7 @@ struct TourDetailView_Previews: PreviewProvider {
     
     static let lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Egestas maecenas pharetra convallis posuere morbi leo urna molestie. Parturient montes nascetur ridiculus mus mauris. Et tortor consequat id porta nibh venenatis cras sed felis. Tincidunt nunc pulvinar sapien et."
     
-    static let tour = Tour(language: Language.en,
+    static let tour = Tour(language: "EN",
                            name: "Some Tour",
                            description: lorem,
                            enabled: true,

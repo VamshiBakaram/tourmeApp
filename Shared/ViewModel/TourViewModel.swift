@@ -22,6 +22,16 @@ struct VideoSubtitles {
 
 class TourViewModel: ObservableObject {
     
+    init() {
+        self.isShowIndicator = true
+        self.getTours()
+    }
+    
+    @Published var isShowIndicator = false
+    @Published var errorMessage: String?
+    @Published var toursList: [ToursDataModel] = []
+    
+    
     @AppStorage("userLanguage") var userLanguage: Language = Language.en
         
     @Published var isLoading = false
@@ -31,11 +41,31 @@ class TourViewModel: ObservableObject {
     @Published var selectedTour: Tour? = nil
     @Published var isShowingSelectedTour: Bool = false
     
+    
+    func getTours() {
+        NetworkManager.shared.request(type: ToursModel.self, url: API.tours) { [weak self]result in
+            guard let self = self else { return }
+            self.isShowIndicator = false
+            switch result {
+            case .success(let response):
+                self.toursList = response.data ?? []
+                break
+            case .failure(let error):
+                switch error {
+                case .message(message: let message):
+                    self.errorMessage = message
+                case .error(error: let error):
+                    self.errorMessage = error
+                }
+            }
+        }
+    }
+    
     func loadTours(userLanguage: Language) {
         
         self.isLoading = true
         
-        guard let url = URL(string: "https://d3aa37cj97ghel.cloudfront.net/tours_\(userLanguage.rawValue).json") else {
+        guard let url = URL(string: "https://d3aa37cj97ghel.cloudfront.net/tours_EN.json") else {
                     return
                 }
         print("tour url", url)
@@ -63,89 +93,31 @@ class TourViewModel: ObservableObject {
                 }.resume()
         
     }
-    
-    /*
-    func loadTours(userLanguage: Language) {
-        
-        self.isLoading = true
-        
-        let listTours = """
-            query listActiveToursEn {
-              listTours(filter: {language: {eq: \(userLanguage.rawValue)}, enabled: {eq: true}}) {
-                items {
-                  id
-                  name
-                  language
-                  enabled
-                  position {
-                    lon
-                    lat
-                  }
-                  thumbnailUrl
-                  videoUrl
-                  description
-                  sortOrder
-                  BusStops(filter: {enabled: {eq: true}, language: {eq: \(userLanguage.rawValue)}}) {
-                    items {
-                      enabled
-                      description
-                      name
-                      id
-                      thumbnailUrl
-                      videoUrl
-                      language
-                    }
-                  }
-                }
-              }
-            }
-
-
-            """
-        
-        let request = GraphQLRequest(document: listTours, responseType: [Tour].self, decodePath: "listTours.items")
-        
-        Amplify.API.query(request: request) { event in
-            switch event {
-            case .success(let result):
-                switch result {
-                case .success(let data):
-                    print("Successfully retrieved list of tours: \(data)")
-                                        
-                    DispatchQueue.main.async {
-                        self.tours = data
-                        self.tours.sort { cur, next in
-                            next.sortOrder ?? 0 > cur.sortOrder ?? 0
-                        }
-                        
-                        //self.loadSubtitles()
-                        
-                        self.isLoading = false
-                    }
-                case .failure(let error):
-                    print("Got failed result with \(error.errorDescription)")
-                    DispatchQueue.main.async {
-                        self.error = error
-                        self.isLoading = false
-                    }
-                }
-            case .failure(let error):
-                print("Got failed event with error \(error)")
-                DispatchQueue.main.async {
-                    self.error = error
-                    self.isLoading = false
-                }
-            }
-        }
-    }
-     */
-    
-    
     func loadSubtitles() {
         self.tours.forEach { tour in
             print(tour.name)
             
         }
     }
+    
 
+}
+
+struct ToursModel: Decodable {
+    let data: [ToursDataModel]?
+}
+
+struct ToursDataModel: Decodable, Identifiable {
+    let id = UUID().uuidString
+    let tourID: Int?
+    let tourName, tourImage, tourDescription: String?
+    let imageURLPath: String?
+    let videoCount: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case tourID = "tourId"
+        case tourName, tourImage, tourDescription
+        case imageURLPath = "imageUrlPath"
+        case videoCount
+    }
 }

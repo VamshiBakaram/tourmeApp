@@ -19,7 +19,7 @@ class HomeContentViewModel: ObservableObject {
         
         self.isLoading = true
         
-        guard let url = URL(string: "https://d3aa37cj97ghel.cloudfront.net/home_content_\(userLanguage.rawValue).json") else {
+        guard let url = URL(string: "https://d3aa37cj97ghel.cloudfront.net/home_content_EN.json") else {
                     return
                 }
                 URLSession.shared.dataTask(with: url) { data, response, error in

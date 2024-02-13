@@ -61,16 +61,16 @@ struct ConfirmCodeView: View {
                     self.error = nil
                     self.isLoading = true
                     hideKeyboard()
-                    sessionManager.confirm(username: username, code: confirmationCode) { error in
-                        self.isLoading = false
-                        self.error = error
-                    }
+//                    sessionManager.confirm(username: username, code: confirmationCode) { error in
+//                        self.isLoading = false
+//                        self.error = error
+//                    }
                 }).authAccent3Button()
                 
                 Spacer()
                 
                 Button("confirm_code_return_to_log_in".localized(userLanguage), action: {
-                    sessionManager.showLogin()
+                    //sessionManager.showLogin()
                 })
                     .foregroundColor(.white)
             }

@@ -10,6 +10,7 @@ import SwiftUI
 struct MeetOurTeamDetailsView: View {
     var teamDetails: MeetOutTeamModel
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         GeometryReader { reader in
             VStack(alignment: .leading) {
@@ -17,7 +18,7 @@ struct MeetOurTeamDetailsView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image("back (3)")
+                        Image(colorScheme == .light ? "back (3)" : "back (4)")
                     })
                     Text("Meet TourmeApp’s Team")
                         .font(.custom(.inriaSansRegular, size: 20))
@@ -28,9 +29,9 @@ struct MeetOurTeamDetailsView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         ZStack(alignment: .leading) {
-                            Image(teamDetails.imageName)
+                            Image(teamDetails.avator)
                                 .resizable()
-                                .frame(width: reader.size.width, height: 328)
+                                .frame(width: reader.size.width, height: reader.size.height * 0.44)
                             VStack(alignment: .leading) {
                                 Spacer()
                                 VStack(alignment: .leading) {
@@ -42,7 +43,7 @@ struct MeetOurTeamDetailsView: View {
                                         .foregroundColor(.white)
                                     Text(teamDetails.description)
                                         .multilineTextAlignment(.leading)
-                                        .font(.custom(.inriaSansBold, size: 12))
+                                        .font(.custom(.inriaSansBold, size: 12, relativeTo: .title2))
                                         .foregroundColor(.white)
 
                                 }
@@ -50,11 +51,11 @@ struct MeetOurTeamDetailsView: View {
                                 .padding(.bottom)
                             }
                         }
-                        Text("I have been a professional tour guide and a Bible\nscholar since 1995. I am a direct descendant of the\nholy tribe of Levi. I was born and raised in Jerusalem,\nwhere I spent endless hours roaming the cobblestone\npaths of the old city and discovering every hidden\npearl.\n\nI now live in Galilee, another spectacular and holy \nplace, where the green fields call to me and whisper\nthe stories of ancient times, which I can't wait to\nshare with you.")
+                        Text(teamDetails.about)
                           .font(
-                            .custom(.inriaSansBold, size: 14)
+                            .custom(.inriaSansBold, size: 16)
                           )
-                          .foregroundColor(Color(red: 0.28, green: 0.28, blue: 0.28))
+                          .foregroundColor(colorScheme == .light ? Color(red: 0.28, green: 0.28, blue: 0.28) : Color.white)
                           .padding(.top)
                           .padding(.horizontal)
                     }
@@ -65,5 +66,5 @@ struct MeetOurTeamDetailsView: View {
 }
 
 #Preview {
-    MeetOurTeamDetailsView(teamDetails: .init(name: "fbdhbf", description: "fbhbfd", imageName: "1"))
+    MeetOurTeamDetailsView(teamDetails: .init(name: "fbdhbf", description: "fbhbfd", imageName: "1", about: "teamDetails", avator: "meyrav 1"))
 }

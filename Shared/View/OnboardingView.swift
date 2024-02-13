@@ -16,11 +16,17 @@ struct OnboardingView: View {
     @AppStorage("userLanguage") var userLanguage: Language = .en
     
     @EnvironmentObject var userPreferencesStore: UserPreferencesStore
+    @EnvironmentObject var sessionManager: SessionManager
+    @Environment(\.presentationMode) var presentationMode
+
+    
+    var isFromSettings = false
     
     var body: some View {
+        
         VStack {
             if currentPage == 1 {
-                InitialScreenView(bgColor: Color("PrimaryColor2"))
+                InitialScreenView(bgColor: Color("PrimaryColor2"), isFromSettings: isFromSettings)
                     .transition(.scale)
             }
             if currentPage == 2 {
@@ -28,61 +34,95 @@ struct OnboardingView: View {
                     .transition(.scale)
             }
             if currentPage == 3 {
-                ScreenView(image: "gardenTomb", title: "onboarding_thank_you".localized(userLanguage), detail: "onboarding_your_ticket_to_the_holy_land".localized(userLanguage), bgColor: Color("PrimaryColor2"))
+                ScreenView(image: "Thank you background", title: "onboarding_thank_you".localized(userLanguage), detail: "onboarding_your_ticket_to_the_holy_land".localized(userLanguage), bgColor: Color("PrimaryColor2"))
                     .transition(.scale)
             }
 //            if currentPage == 4 {
 //                ScreenView(image: "en_gedi_israel", title: "onboarding_get_started_title".localized(userLanguage), detail: "onboarding_get_started_detail".localized(userLanguage), bgColor: Color("PrimaryColor2"))
 //                    .transition(.scale)
 //            }
-            if currentPage == 4 {
-                UserProfileScreenView(image: "en_gedi_israel", title: "onboarding_user_profile_title".localized(userLanguage), detail: "May we have some Information?", bgColor: Color("PrimaryColor2"))
-                    .transition(.scale)
-            }
+           // if currentPage == 4 {
+               // UserProfileScreenView(image: "en_gedi_israel", title: "onboarding_user_profile_title".localized(userLanguage), detail: "May we have some Information?", bgColor: Color("PrimaryColor2"))
+                //    .transition(.scale)
+           // }
         }
         .overlay(
             HStack {
-                if currentPage == 3 {
-                    Button(action: {
-                        withAnimation(.easeInOut) {
-                            currentPage -= 1
-                        }
-                    }) {
-                        Text("Previous")
-                            .font(.custom(.inriaSansRegular, size: 18))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: 180)
-                            .frame(height: 50)
-                            .padding()
-                    }
-                    .padding(.bottom, 20)
-                    Spacer()
-                }
-                if currentPage == 2 {
-                    Spacer()
-                }
+//                if currentPage == 3 {
+//                    Button(action: {
+//                        withAnimation(.easeInOut) {
+//                            currentPage -= 1
+//                        }
+//                    }) {
+//                        Text("Previous")
+//                            .font(.custom(.inriaSansRegular, size: 18))
+//                            .foregroundColor(.white)
+//                            .frame(maxWidth: 180)
+//                            .frame(height: 50)
+//                            .padding()
+//                    }
+//                    .padding(.bottom, 20)
+//                    Spacer()
+//                }
+                Spacer()
                 Button(action: {
                     withAnimation(.easeInOut) {
                         if currentPage < totalPages {
-                            currentPage += 1
+                            if currentPage == 1  {
+                                if isFromSettings {
+                                    presentationMode.wrappedValue.dismiss()
+                                }else{
+                                    currentPage = 3
+                                }
+                            }else{
+                                if isFromSettings {
+                                    presentationMode.wrappedValue.dismiss()
+                                }else{
+                                    currentPage = 3
+                                }
+                                showOnboarding = false
+                            }
                         } else {
-                            showOnboarding = false
+                            if isFromSettings {
+                                presentationMode.wrappedValue.dismiss()
+                            }else{
+                                showOnboarding = false
+
+                            }
                         }
                     }
                 }, label: {
-                    Text(currentPage == 4 ? "Finish" : "Next")
-                        .font(.custom(.inriaSansRegular, size: 18))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: (currentPage == 1 || currentPage == 4) ? .infinity : 180)
-                        .frame(height: 50)
-                        .background(Color.buttonThemeColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                        .padding()
+                    if isFromSettings {
+                        Text("Save")
+                            .font(.custom(.inriaSansRegular, size: 18))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.buttonThemeColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .padding()
+                    }else{
+                        Text(currentPage == 4 ? "Finish".localized(userLanguage) : "Next".localized(userLanguage))
+                            .font(.custom(.inriaSansRegular, size: 18))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.buttonThemeColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .padding()
+                    }
                 })
                 .padding(.bottom, 20)
             }
             , alignment: .bottom
         )
+        .onAppear {
+            if isFromSettings {
+                currentPage = 1
+            }
+        }
     }
 }
 
@@ -106,29 +146,23 @@ struct ScreenView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            HStack {
-                Spacer()
-                if canSkip {
-                    Button(action: {
-                        showOnboarding = false
-                    }, label: {
-                        Text("onboarding_skip".localized(userLanguage))
-                            .fontWeight(.semibold)
-                            .kerning(1.2)
-                    })
-                }
-            }
-            .padding()
-            Text(title)
-                .font(.custom(.inriaSansBold, size: 36))
-                .padding(.top)
-            Text(detail)
-                .font(.custom(.inriaSansBold, size: 16))
+            Spacer()
+            Text("Welcome to\nTourMeApp".localized(userLanguage))
+                .foregroundColor(.white)
+                .font(.custom(.inriaSansBold, size: 44))
                 .fontWeight(.bold)
-                .frame(width: currentPage == 2 ? 120 : 230)
+                .padding(.top)
+                .multilineTextAlignment(.center)
+            Text("Let your Holy Land adventure begin".localized(userLanguage))
+                .foregroundColor(.white)
+                .font(.custom(.inriaSansBold, size: 18))
+                .fontWeight(.bold)
+                .kerning(0.36)
                 .multilineTextAlignment(.center)
             Spacer()
+            Spacer()
         }
+        .frame(maxWidth: .infinity)
         .foregroundColor(.white)
         .background(
             Image(image)
@@ -153,19 +187,20 @@ struct InitialScreenView: View {
     @AppStorage("showOnboarding") var showOnboarding = true
     
     var bgColor: Color
+    var isFromSettings = false
     
     @State private var languageItems: [ChooseLanguage] = [
         .init(headerImageName: "usa_flag", languageName: "English"),
-        .init(headerImageName: "spain_flag", languageName: "Portugese"),
-        .init(headerImageName: "brasil_flag", languageName: "English")
+        .init(headerImageName: "spain_flag", languageName: "Spanish"),
+        .init(headerImageName: "brasil_flag", languageName: "Portuguese")
     ]
     
     var body: some View {
         GeometryReader { reader in
             VStack(spacing: 30) {
                 Spacer()
-                Text("settings_choose_language".localized(userLanguage))
-                    .font(.custom(.inriaSansBold, size: 36))
+                Text(isFromSettings ? "Change\nLanguage" : "settings_choose_language".localized(userLanguage))
+                    .font(.custom(.inriaSansBold, size: 44))
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
@@ -175,7 +210,8 @@ struct InitialScreenView: View {
                             Image(languageItems[index].headerImageName)
                             Text(languageItems[index].languageName)
                                 .font(.custom("InriaSans-Regular", size: 18))
-                                .foregroundColor(.black)
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
                             if languageItems[index].isSelected {
                                 Image("icon-park")
                             }
@@ -183,7 +219,7 @@ struct InitialScreenView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: languageItems[index].isSelected ? 10 : 0)
-                                .stroke(Color.black, lineWidth: languageItems[index].isSelected ? 2 : 0)
+                                .stroke(Color(red: 0.02, green: 0.62, blue: 0.85), lineWidth: languageItems[index].isSelected ? 2 : 0)
                         )
                         .clipShape(RoundedRectangle(cornerRadius: languageItems[index].isSelected ? 10 : 0))
                         .padding()
@@ -194,6 +230,15 @@ struct InitialScreenView: View {
                                         self.languageItems[index].isSelected = false
                                     }
                                     self.languageItems[index].isSelected = true
+                                    if self.languageItems.first?.isSelected ?? false {
+                                        userLanguage = .en
+                                    }else if self.languageItems[1].isSelected {
+                                        userLanguage = .es
+                                    }else if self.languageItems.last?.isSelected ?? false{
+                                        userLanguage = .pt
+                                    }else{
+                                        userLanguage = .en
+                                    }
                                 })
                         )
                     }
@@ -202,7 +247,17 @@ struct InitialScreenView: View {
             }
             .padding()
         }
-        
+        .onAppear {
+            if isFromSettings {
+                if userLanguage == .en {
+                    languageItems[0].isSelected = true
+                }else if userLanguage == .es {
+                    languageItems[1].isSelected = true
+                }else if userLanguage == .pt {
+                    languageItems[2].isSelected = true
+                }
+            }
+        }
 ////            HStack {
 ////                if currentPage == 1 {
 ////                    Text("onboarding_welcome".localized(userLanguage))
@@ -269,10 +324,13 @@ struct InitialScreenView: View {
     }
 }
 
+import ToastSwiftUI
+
 struct UserProfileScreenView: View {
     
     @Environment(\.colorScheme) var colorScheme
-    
+    @Environment(\.presentationMode) var presentationMode
+
     @EnvironmentObject var userPreferencesStore: UserPreferencesStore
     
     @ObservedObject var keyboardResponder = KeyboardResponder()
@@ -285,10 +343,14 @@ struct UserProfileScreenView: View {
     @AppStorage("phone") var userPhone = ""
     @AppStorage("displayName") var userDisplayName = ""
     
+    @EnvironmentObject var sessionManager: SessionManager
+
     
     @State var email = ""
     @State var phone = ""
     @State var displayName = ""
+    
+    @State var message: String?
     
     @State var isLoading = false
     @State var error: Error?
@@ -298,62 +360,12 @@ struct UserProfileScreenView: View {
     var detail: String
     var bgColor: Color
     var canSkip: Bool = false
+    let emailFromSignUp: String?
+    let displayNameFromSignUp: String?
+    var isFromSettings: Bool
     
     var body: some View {
         VStack(alignment: .leading,spacing: 20) {
-            
-//            HStack {
-//                
-//                if currentPage == 1 {
-//                    
-//                    Text("onboarding_welcome".localized(userLanguage))
-//                        .font(.title)
-//                        .fontWeight(.semibold)
-//                        .kerning(1.4)
-//                } else {
-//                    
-//                    Button(action: {
-//                        // changing views...
-//                        withAnimation(.easeInOut) {
-//                            
-//                            currentPage -= 1
-//                        }
-//                    }) {
-//                        
-//                        Image(systemName: "chevron.left")
-//                            .foregroundColor(.white)
-//                            .padding(.vertical, 10)
-//                            .padding(.horizontal)
-//                            .background(Color.black.opacity(0.4))
-//                            .cornerRadius(10)
-//                    }
-//                }
-//                
-//                Spacer()
-//                
-//                if canSkip {
-//                    Button(action: {
-//                        
-//                        showOnboarding = false
-//                    }, label: {
-//                        Text("onboarding_skip".localized(userLanguage))
-//                            .fontWeight(.semibold)
-//                            .kerning(1.2)
-//                    })
-//                }
-//            }
-//            .padding()
-            
-            //Spacer(minLength: 0)
-            
-            //LottieView(name: "profile3", loopMode: .loop)
-               // .frame(width: 200, height: 200)
-            /*
-            Image(image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .padding(10)
-             */
             HStack {
                 Spacer()
                 ZStack {
@@ -392,45 +404,47 @@ struct UserProfileScreenView: View {
                 Text(title)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.primary)
-                    .font(.custom(.inriaSansBold, size: 36))
+                    .font(.custom(.inriaSansBold, size: 40))
                     .padding(.top)
                 Text(detail)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.primary)
-                    .font(.custom(.inriaSansRegular, size: 14))
+                    .font(.custom(.inriaSansRegular, size: 16))
             }).padding()
                 .offset(y: -120)
-            Group {
+            VStack(spacing: 16) {
                 FloatingLabelTextField($displayName, placeholder: "onboarding_display_name".localized(userLanguage))
                     .leftView {
                         Image("user")
                     }
-                    .foregroundColor(.primary)
+                    .textColor(.primary)
+                    .titleColor(.primary)
+                    .selectedLineColor(.primary)
+                    .selectedTextColor(.primary)
+                    .selectedTitleColor(.primary)
                     .frame(height: 50)
                 FloatingLabelTextField($email, placeholder: "onboarding_email".localized(userLanguage))
                     .leftView {
                         Image("mail")
                     }
+                    .textColor(.primary)
+                    .titleColor(.primary)
+                    .selectedLineColor(.primary)
+                    .selectedTextColor(.primary)
+                    .selectedTitleColor(.primary)
                     .frame(height: 50)
                     .keyboardType(.emailAddress)
                 FloatingLabelTextField($phone, placeholder: "onboarding_phone".localized(userLanguage))
                     .leftView {
                         Image("phone")
                     }
+                    .textColor(.primary)
+                    .titleColor(.primary)
+                    .selectedLineColor(.primary)
+                    .selectedTextColor(.primary)
+                    .selectedTitleColor(.primary)
                     .frame(height: 50)
                     .keyboardType(.phonePad)
-//                TextField("onboarding_email".localized(userLanguage), text: $email)
-//                    .pretty()
-//                    .keyboardType(.emailAddress)
-//                    .autocapitalization(.none)
-//                TextField("onboarding_phone".localized(userLanguage), text: $phone)
-//                    .pretty()
-//                    .keyboardType(.phonePad)
-//                    .autocapitalization(.none)
-//                TextField("onboarding_display_name".localized(userLanguage), text: $displayName)
-//                    .pretty()
-//                    .keyboardType(.default)
-//                    .autocapitalization(.words)
             }
             .padding(.horizontal, 20)
             .offset(y: -80)
@@ -441,10 +455,65 @@ struct UserProfileScreenView: View {
             Spacer()
         }
         .ignoresSafeArea()
+        .overlay(
+            HStack {
+                Spacer()
+                Button(action: {
+                    withAnimation(.easeInOut) {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        if isFromSettings {
+                            updateProfile()
+                        }else{
+                            self.sessionManager.authManager = "home"
+                        }
+                    }
+                }, label: {
+                    Text(isFromSettings ? "Update" : "Finish".localized(userLanguage))
+                        .font(.custom(.inriaSansRegular, size: 18))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.buttonThemeColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .padding()
+                })
+                .padding(.bottom, 20)
+            }
+            , alignment: .bottom
+        )
+        .toast($message)
+        .onAppear(perform: {
+            self.email = emailFromSignUp ?? ""
+            self.displayName = displayNameFromSignUp ?? ""
+            if isFromSettings {
+                self.email = sessionManager.email
+                self.displayName = sessionManager.displayName
+                self.phone = sessionManager.phone
+            }
+        })
         .onDisappear {
             userDisplayName = displayName
-            //saveProfileData()
+            sessionManager.phone = phone
+
         }
+    }
+    
+    func updateProfile() {
+        self.isLoading = true
+        let parameters = UpdateProfile(email: email, familyName: sessionManager.familyName , id: sessionManager.userId ?? "", phoneNumber: phone, userName: displayName)
+        NetworkManager.shared.request(type: ResetPasswordModel.self, url: API.updateProfile, httpMethod: .post, parameters: parameters) { result in
+            self.message = "Profile updated successfully"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                sessionManager.email = email
+                sessionManager.phone = phone
+                sessionManager.displayName = displayName
+                userDisplayName = displayName
+                self.isLoading = false
+                presentationMode.wrappedValue.dismiss()
+            })
+        }
+        
     }
     
     func saveProfileData() {
@@ -463,3 +532,11 @@ struct UserProfileScreenView: View {
 }
 
 var totalPages = 4
+
+struct UpdateProfile: Encodable {
+    let email: String
+    let familyName: String
+    let id: String
+    let phoneNumber: String
+    let userName: String
+}

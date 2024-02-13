@@ -176,6 +176,7 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AVPlayerViewController-Subtitles/AVPlayerViewControllerSubtitles.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework"
@@ -187,13 +188,16 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AmplifyPlugins/AmplifyPlugins.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AppSyncRealTimeClient/AppSyncRealTimeClient.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagKit/FlagKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PayPal/PayPal.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Purchases/Purchases.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PurchasesCoreSwift/PurchasesCoreSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PayPalCheckout/PayPalCheckout.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AVPlayerViewController-Subtitles/AVPlayerViewControllerSubtitles.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework"
@@ -205,11 +209,13 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AmplifyPlugins/AmplifyPlugins.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AppSyncRealTimeClient/AppSyncRealTimeClient.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagKit/FlagKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PayPal/PayPal.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Purchases/Purchases.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PurchasesCoreSwift/PurchasesCoreSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PayPalCheckout/PayPalCheckout.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -8,25 +8,65 @@
 import Foundation
 import SwiftUI
 import AVKit
-//import AVPlayerViewControllerSubtitles
+import AVPlayerViewControllerSubtitles
+//struct AVMoviePlayer: UIViewControllerRepresentable {
+//        
+//    var player: AVQueuePlayer?
+//    var currentUrl: URL?
+//    var subTitleURL: URL?
+//        
+//    init(player: AVQueuePlayer?, currentUrl: URL?, ) {
+//        self.player = player
+//        self.currentUrl = currentUrl
+//    }
+//    
+//    typealias UIViewControllerType = AVPlayerViewController
+//    
+//    func makeUIViewController(context: Context) -> AVPlayerViewController {
+//        let avViewController = AVPlayerViewController()
+//        avViewController.player = self.player
+//        avViewController.delegate = context.coordinator
+//        avViewController.showsPlaybackControls = true
+//        return avViewController
+//    }
+//    
+//    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+//        if subTitleURL != nil {
+//            uiViewController.addSubtitles()
+//            uiViewController.open(fileFromRemote: subTitleURL!)
+//        }
+//        uiViewController.player = self.player
+//
+//    }
+//    
+//    func makeCoordinator() -> AVPlayerCoordinator {
+//        AVPlayerCoordinator(self)
+//    }
+//    
+//    class AVPlayerCoordinator: NSObject, AVPlayerViewControllerDelegate {
+//        var parent: AVMoviePlayer
+//        init(_ parent: AVMoviePlayer) {
+//            self.parent = parent
+//        }
+//    }
+//    
+//}
+
 
 struct AVMoviePlayer: UIViewControllerRepresentable {
         
     var player: AVQueuePlayer?
     var useSubtitles: Bool
     var subtitleURL: URL?
-    //var subtitleURLs: [URL]?
     var currentUrl: URL?
-    @SceneStorage("lastUrl") var lastUrl: URL? // = URL(string: "")
-    
-    class DummyClass { } ; let x = DummyClass()
     
     init(player: AVQueuePlayer?, useSubtitles: Bool, selectedSubtitle: String, currentUrl: URL?) {
         self.player = player
         self.useSubtitles = useSubtitles
-        //self.subtitleURLs = subtitleURLs
-        if selectedSubtitle != "Off" {
-        self.subtitleURL = URL(string: selectedSubtitle)
+        if selectedSubtitle != "off" {
+            self.subtitleURL = URL(string: selectedSubtitle)
+        }else{
+            self.subtitleURL = nil
         }
         self.currentUrl = currentUrl
     }
@@ -51,34 +91,19 @@ struct AVMoviePlayer: UIViewControllerRepresentable {
         //avViewController.allowsPictureInPicturePlayback = true
         //avViewController.updatesNowPlayingInfoCenter = true
         
-       // avViewController.subtitleLabel?.textColor = .white
+        avViewController.subtitleLabel?.textColor = .white
         return avViewController
     }
     
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
-        
-        if self.lastUrl != self.currentUrl {
-               
-            /*
-            if self.subtitleURLs != nil {
-                for subtitle in self.subtitleURLs! {
-                    //let urlString = "https://tourmeapp.s3.amazonaws.com/vod/tel-aviv/subtitles/1/TelAviv1.en_US.srt"
-                    uiViewController.addSubtitles().open(fileFromRemote: subtitle)
-                    print("\(subtitle)")
-                }
-            }
-             */
-            
-            if self.subtitleURL != nil {
-               // uiViewController.addSubtitles().open(fileFromRemote: self.subtitleURL!)
-                print(self.subtitleURL!.absoluteString)
-            }
-            
-            uiViewController.player = self.player
-            
-            //self.lastUrl = self.currentUrl
+        if self.subtitleURL != nil {
+            uiViewController.open(fileFromRemote: self.subtitleURL!)
+            uiViewController.addSubtitles()
+            print(self.subtitleURL!.absoluteString)
+        }else{
+            uiViewController.open(fileFromRemote: URL(fileURLWithPath: "hghgh"))
         }
-
+        uiViewController.player = self.player
     }
     
     func makeCoordinator() -> AVPlayerCoordinator {

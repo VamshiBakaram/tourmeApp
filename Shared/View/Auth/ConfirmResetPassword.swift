@@ -66,23 +66,23 @@ struct ConfirmResetPassword: View {
                     self.error = nil
                     self.isLoading = true
                     hideKeyboard()
-                    sessionManager.confirmResetPassword(username: username, password: password, confirmationCode: confirmationCode) { error in
-                        
-                        self.isLoading = false
-                        self.error = error
-                        
-                        if error == nil {
-                            isShowingPasswordResetSuccessful = true
-                        }
-                        
-                        
-                    }
+//                    sessionManager.confirmResetPassword(username: username, password: password, confirmationCode: confirmationCode) { error in
+//                        
+//                        self.isLoading = false
+//                        self.error = error
+//                        
+//                        if error == nil {
+//                            isShowingPasswordResetSuccessful = true
+//                        }
+//                        
+//                        
+//                    }
                 }).authAccent3Button()
                 
                 Spacer()
                 
                 Button("confirm_code_return_to_log_in".localized(userLanguage), action: {
-                    sessionManager.showLogin()
+                    //sessionManager.showLogin()
                 })
                     .foregroundColor(.white)
             }
@@ -94,7 +94,7 @@ struct ConfirmResetPassword: View {
                 Alert(title: Text("Password Reset Successful"),
                       message: Text("Please log in with your new password"),
                       dismissButton: .default(Text("OK")) {
-                    sessionManager.showLogin()
+                    //sessionManager.showLogin()
                 })
             }
             

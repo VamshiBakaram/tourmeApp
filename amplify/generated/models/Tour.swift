@@ -4,7 +4,7 @@ import Foundation
 
 public struct Tour: Model {
   public let id: String
-  public var language: Language
+  public var language: String
   public var name: String
   public var description: String?
   public var enabled: Bool
@@ -18,7 +18,7 @@ public struct Tour: Model {
   public var updatedAt: Temporal.DateTime?
   
   public init(id: String = UUID().uuidString,
-      language: Language,
+      language: String,
       name: String,
       description: String? = nil,
       enabled: Bool,
@@ -43,7 +43,7 @@ public struct Tour: Model {
       updatedAt: nil)
   }
   internal init(id: String = UUID().uuidString,
-      language: Language,
+      language: String,
       name: String,
       description: String? = nil,
       enabled: Bool,
