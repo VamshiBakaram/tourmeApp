@@ -27,7 +27,11 @@ struct PasswordOTPView: View {
     @EnvironmentObject var sessionManager: SessionManager
     @State var isLoading = false
     
+    @State var isShowLogin = false
+    
     var email: String
+    
+    @AppStorage("userLanguage") var userLanguage: Language = .en
     
     var body: some View {
         ZStack {
@@ -191,6 +195,9 @@ struct PasswordOTPView: View {
             if isLoading {
                 ShowProgressView()
             }
+            if isShowLogin{
+                LoginView()
+            }
             
         }
     }
@@ -203,10 +210,27 @@ struct PasswordOTPView: View {
             switch result {
             case .success(_):
                 self.isLoading = false
-                sessionManager.authManager = "login"
-            case .failure(_):
-                self.isLoading = false
-                break
+                self.isShowLogin = true
+               // sessionManager.authManager = "login"
+//            case .failure(_):
+//                self.isLoading = false
+//                break
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    switch error {
+                    case .message(message: let message):
+                        if message == "error" {
+                            self.errorMessage = "Invalid details".localized(self.userLanguage)
+                        }
+                    case .error(error: let error):
+                        if error == "error" {
+                            self.errorMessage = "Invalid details".localized(self.userLanguage)
+                        }else{
+                            self.errorMessage = error
+                        }
+                    }
+                }
             }
         }
     }

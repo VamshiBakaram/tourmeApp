@@ -36,12 +36,11 @@ struct ToursMapView: View {
                 if tourViewModel.error != nil {
                     NoInternetView(tourViewModel: tourViewModel)
                  } else {
-
-                     Map(coordinateRegion: $region, annotationItems: tourViewModel.tours) { tour in
-                         MapAnnotation(coordinate: tour.coordinate) {
+                     Map(coordinateRegion: $region, annotationItems: tourViewModel.toursList) { tour in
+                         MapAnnotation(coordinate: coordinate(for: tour)) {
                              NavigationLink {
-                                 //TourPlayerView(tour: tour)
-                                    // .navigationBarHidden(true)
+                                 NavigationLazyView(TourPlayerView(tourId: tour.tourID ?? 0, titleFrom: tour.tourName ?? "", descriptionFrom: tour.tourDescription ?? ""))
+                                     .navigationBarHidden(true)
                              } label: {
                                  MapPinImage()
 //                                     .onTapGesture {
@@ -73,15 +72,23 @@ struct ToursMapView: View {
                     .onAppear {
                         MKMapView.appearance().mapType = .hybrid
                         
-                        if tourViewModel.tours.count == 0 && !tourViewModel.isLoading {
-                            tourViewModel.loadTours(userLanguage: userLanguage)
-                        }
+                        tourViewModel.loadTours(userLanguage: userLanguage)
                     }
                 }
             }
             .navigationBarHidden(true)
         }
     }
+    func coordinate(for tour: ToursDataModel) -> CLLocationCoordinate2D {
+//           if tour.pOTourName?.trimmingCharacters(in: .whitespacesAndNewlines) == "Jaffa" {
+//               return CLLocationCoordinate2D(latitude: 32.0496, longitude: 34.7588)
+//           } else {
+               return CLLocationCoordinate2D(
+                   latitude: CLLocationDegrees(Double(tour.latitude ?? "0.0") ?? 0.0),
+                   longitude: CLLocationDegrees(Double(tour.langitude ?? "0.0") ?? 0.0)
+               )
+//           }
+       }
         
 }
 

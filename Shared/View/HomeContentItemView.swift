@@ -42,6 +42,7 @@ struct HomeContentItemView: View {
                 }
                 Text(homeContent.description)
                     .font(.custom(.inriaSansBold, size: 16))
+                    //.kerning(1.0)
                     .foregroundColor(.primary)
                     .padding(.bottom)
                 

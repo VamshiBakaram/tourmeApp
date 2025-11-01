@@ -13,6 +13,8 @@ struct API {
     
     static let login = baseURL + "Account/user-login"
     static let signup = baseURL + "Account/user-register"
+    static let signupNew = baseURL + "Account/user-new-register"
+    static let deleteAcc = baseURL + "Account/delete-account"
     static let forgotPassword = baseURL + "Account/forgetpassword?email="
     static let resetPassword = baseURL + "Account/reset-Password"
     
@@ -26,4 +28,6 @@ struct API {
     static let savePayment = baseURL + "Payment/get-transaction-details/orderId?orderId="
     
     static let updateProfile = baseURL + "User/Upadte-userprofile"
+    
+    static let getUserProfile = baseURL + "User/edit-userprofile"
 }

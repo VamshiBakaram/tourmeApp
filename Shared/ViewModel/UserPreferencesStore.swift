@@ -16,7 +16,6 @@ enum UserLanguage: String, CaseIterable, Identifiable {
     case english
     case spanish
     case portuguese
-    
     var id: String { self.rawValue }
 }
 

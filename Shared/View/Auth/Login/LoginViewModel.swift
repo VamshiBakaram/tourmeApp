@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class LoginViewModel: ObservableObject {
     @Published var errorMessage: String?
@@ -13,14 +14,15 @@ class LoginViewModel: ObservableObject {
     
     @Published var email: String = ""
     @Published var password: String = ""
+    @AppStorage("userLanguage") var userLanguage: Language = .en
     
     func login(completion: @escaping(LoginModel) -> Void) {
         if email.isEmpty {
-            errorMessage = "Please enter email"
+            errorMessage = "Please enter email".localized(userLanguage)
             return
         }
         if password.isEmpty {
-            errorMessage = "Please enter password"
+            errorMessage = "Please enter password".localized(userLanguage)
             return
         }
         self.isShowIndicator = true
@@ -35,7 +37,7 @@ class LoginViewModel: ObservableObject {
                 print(response)
                 DispatchQueue.main.async {
                     self.isShowIndicator = false
-                    self.errorMessage = "Logged in successfully"
+                    self.errorMessage = "Logged in successfully".localized(self.userLanguage)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         completion(response)
                     })
@@ -47,17 +49,18 @@ class LoginViewModel: ObservableObject {
                     switch error {
                     case .message(message: let message):
                         if message == "error" {
-                            self.errorMessage = "Invalid details"
+                            self.errorMessage = "Invalid details".localized(self.userLanguage)
                         }
                     case .error(error: let error):
                         if error == "error" {
-                            self.errorMessage = "Invalid details"
+                            self.errorMessage = "Invalid details".localized(self.userLanguage)
                         }else{
                             self.errorMessage = error
                         }
                     }
                 }
             }
+            
         }
     }
 }
@@ -72,12 +75,13 @@ struct LoginDataModel: Decodable {
     let token, userID: String?
     let status: String?
     let userName: String?
-
+    let email:String?
     enum CodingKeys: String, CodingKey {
         case token
         case userID = "userId"
         case status
         case userName
+        case email
     }
 }
 

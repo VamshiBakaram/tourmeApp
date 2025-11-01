@@ -63,7 +63,7 @@ struct LoginView: View {
                             .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
                         HStack {
                             Image("lock")
-                            if isShowPassword {
+                            if !isShowPassword {
                                 SecureField("Enter Password".localized(userLanguage) ,text: $loginViewModel.password)
                                     .padding(.vertical)
                                     .padding(.horizontal, 4)
@@ -112,12 +112,13 @@ struct LoginView: View {
                         loginViewModel.login { token in
                             sessionManager.token = token.data?.token ?? ""
                             sessionManager.userId = token.data?.userID ?? ""
-                            userDisplayName = token.data?.userName ?? ""
-                            sessionManager.displayName = token.data?.userName ?? ""
+                            sessionManager.email = token.data?.email ?? ""
+//                            userDisplayName = token.data?.userName ?? ""
+//                            sessionManager.displayName = token.data?.userName ?? ""
                             sessionManager.authManager = "home"
                         }
                     } label: {
-                        Text("Sign In".localized(userLanguage))
+                        Text("Log In".localized(userLanguage))
                             .font(.custom(.inriaSansRegular, size: 18))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -131,15 +132,39 @@ struct LoginView: View {
                         Text("New to Tourme App?".localized(userLanguage))
                             .font(.custom(.inriaSansRegular, size: 20))
                             .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
+                        Spacer()
+
+                    }
+                    .padding(.top,12)
+                    HStack{
+//                        NavigationLink(destination: SignUpView().navigationBarHidden(true), isActive: $sessionManager.isShowSignUp, label: {
+//                            Text("Sign Up".localized(userLanguage))
+//                                .font(.custom(.inriaSansRegular, size: 18))
+//                                .fontWeight(.bold)
+//                                .foregroundColor(.white)
+//                                .frame(maxWidth: .infinity)
+//                                .frame(height: 50)
+//                                .background(Color.blue)
+//                                .cornerRadius(5)
+//                                .onTapGesture {
+//                                    sessionManager.isShowSignUp = true
+//                                }
+//                        })
+                       
                         NavigationLink(destination: SignUpView().navigationBarHidden(true)
                         ) {
-                            Text("Sign Up?".localized(userLanguage))
-                                .font(.custom(.inriaSansRegular, size: 20))
-                                .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85))
-                                .padding(.vertical)
-                                .underline()
+                            Text("Register".localized(userLanguage))
+                                .font(.custom(.inriaSansRegular, size: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50)
+                                .background(Color.blue)
+                                .cornerRadius(5)
                         }
+                        
                     }
+                    .padding(.top,12)
                     Spacer()
                 }
                 .padding(.horizontal)

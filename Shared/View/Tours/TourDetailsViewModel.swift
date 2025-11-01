@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class TourDetailsViewModel: ObservableObject {
     
@@ -20,7 +21,8 @@ class TourDetailsViewModel: ObservableObject {
     @Published var selectedVideo: VideoDetail?
     @Published var isShowShare = false
     @Published var colors: [String] = []
-
+    @AppStorage("userLanguage") var userLanguage: Language = Language.en
+    
     var trailerURL = ""
         
     func getTourDetails(tourId: Int) {
@@ -28,7 +30,13 @@ class TourDetailsViewModel: ObservableObject {
         NetworkManager.shared.request(type: TourDetailsModel.self, url: "\(API.tourDetails)\(tourId)") { result in
             switch result {
             case .success(let response):
-                self.trailerURL = response.data?.trailerVideoPath ?? ""
+                if self.userLanguage == .en {
+                    self.trailerURL = response.data?.trailerVideoPath ?? ""
+                }else if self.userLanguage == .es{
+                    self.trailerURL = response.data?.spTrailerVideoPath ?? ""
+                }else{
+                    self.trailerURL = response.data?.poTrailerVideoPath ?? ""
+                }
                 self.selectedVideo = response.data?.videoDetails?.first
                 self.tourDetails = response
                 self.isPlayVideo = true
@@ -73,49 +81,6 @@ class TourDetailsViewModel: ObservableObject {
     }
 }
 
-
-struct TourDetailsModel: Decodable {
-    let data: TourDetailsDataModel?
-}
-
-struct TourDetailsDataModel: Decodable {
-    let tourID: Int?
-    let enTourName, enTourDesc, spTourName, spTourDesc: String?
-    let poTourName, poTourDesc: String?
-    let videoDetails: [VideoDetail]?
-    let trailerVideoPath: String?
-
-    enum CodingKeys: String, CodingKey {
-        case tourID = "tourId"
-        case enTourName, enTourDesc, spTourName, spTourDesc, poTourName, poTourDesc, videoDetails
-        case trailerVideoPath
-    }
-}
-
-struct VideoDetail: Codable {
-    let videoID: Int?
-    let envideoName, envideoDesc, spvideoName, spvideoDesc, spvideoTitle, envideoURl, envideoTitle: String?
-    let povideoName, povideoDesc: String?
-    let videoURl: String?
-    let thumbnailURLPath: String?
-    let videoDuration: String?
-    let isActive: Bool?
-    let envideoDuration: String?
-    let srtFilesDetailsOnVideo: [SrtFilePathModel]?
-    var videoLikeCount, videoViewsCount: Int?
-    
-    
-
-    enum CodingKeys: String, CodingKey {
-        case videoID = "videoId"
-        case envideoName, envideoDesc, spvideoName, spvideoDesc,spvideoTitle, envideoURl, envideoTitle, povideoName, povideoDesc, videoURl
-        case thumbnailURLPath = "thumbnailUrlPath"
-        case videoDuration, isActive, videoLikeCount, videoViewsCount
-        case envideoDuration
-        case srtFilesDetailsOnVideo
-    }
-}
-
 struct UpdateLike: Encodable {
     let tourId: Int
     let userId: String
@@ -125,4 +90,63 @@ struct UpdateLike: Encodable {
 
 struct SrtFilePathModel: Codable  {
     let srtFilePath: String?
+}
+
+
+struct TourDetailsModel: Decodable {
+    let data: TourDetailsDataModel?
+}
+
+struct TourDetailsDataModel: Decodable {
+    let tourID: Int?
+    let enTourName, enTourDesc, spTourName, spTourDesc: String?
+    let poTourName, poTourDesc, trailerVideo: String?
+    let trailerVideoPath: String?
+    let spTrailerVideo: String?
+    let spTrailerVideoPath: String?
+    let poTrailerVideo: String?
+    let poTrailerVideoPath: String?
+    let videoDetails: [VideoDetail]?
+
+    enum CodingKeys: String, CodingKey {
+        case tourID = "tourId"
+        case enTourName, enTourDesc, spTourName, spTourDesc, poTourName, poTourDesc, trailerVideo, trailerVideoPath, spTrailerVideo, spTrailerVideoPath, poTrailerVideo, poTrailerVideoPath, videoDetails
+    }
+}
+
+struct VideoDetail: Decodable {
+    let videoID: Int?
+    let envideoName: String?
+    let envideoURl: String?
+    let spvideoName: String?
+    let spvideoURl: String?
+    let povideoName: String?
+    let povideoURl: String?
+    let envideoTitle, envideoDesc, spvideoTitle, spvideoDesc: String?
+    let povideoTitle, povideoDesc: String?
+    let thumbnailURLPath: String?
+    let envideoDuration, spvideoDuration, povideoDuration: String?
+    let isActive: Bool?
+    var videoLikeCount, videoViewsCount: Int?
+    let srtFilesDetailsOnVideo: [SrtFilesDetailsOnVideo]?
+    //let videoSrtDetailsOnVideo: JSONNull?
+
+    enum CodingKeys: String, CodingKey {
+        case videoID = "videoId"
+        case envideoName, envideoURl, spvideoName, spvideoURl, povideoName, povideoURl, envideoTitle, envideoDesc, spvideoTitle, spvideoDesc, povideoTitle, povideoDesc
+        case thumbnailURLPath = "thumbnailUrlPath"
+        case envideoDuration, spvideoDuration, povideoDuration, isActive, videoLikeCount, videoViewsCount, srtFilesDetailsOnVideo
+    }
+}
+
+struct SrtFilesDetailsOnVideo: Decodable {
+    let srtID, videoID: Int?
+    let srtFileName: String?
+    let srtFilePath: String?
+
+    enum CodingKeys: String, CodingKey {
+        case srtID = "srtId"
+        case videoID = "videoId"
+        case srtFileName, srtFilePath
+    }
 }

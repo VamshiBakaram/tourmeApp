@@ -81,39 +81,71 @@ class NetworkManager: NSObject {
                 }
                 return
             }
+            /*
+             guard let httpResponse = response as? HTTPURLResponse, (200..<399).contains(httpResponse.statusCode) else {
+             do
+             {
+             let errorjsonData = try JSONSerialization.jsonObject(with: httpData)
+             print(errorjsonData)
+             let errorjson = try JSONDecoder().decode(ErrorHandlerModel.self, from: httpData)
+             if let validationError = errorjson.status {
+             DispatchQueue.main.async {
+             completionHandler(.failure(.error(error: validationError)))
+             }
+             return
+             }else{
+             completionHandler(.failure(.error(error: "Please try again later")))
+             return
+             }
+             }catch{
+             print(error)
+             DispatchQueue.main.async {
+             completionHandler(.failure(.error(error: "Decoding error")))
+             }
+             return
+             }
+             }
+             do
+             {
+             let jsonData = try JSONSerialization.jsonObject(with: httpData)
+             print(jsonData)
+             let json = try JSONDecoder().decode(T.self, from: httpData)
+             DispatchQueue.main.async {
+             completionHandler(.success(json))
+             }
+             }catch{
+             print(error)
+             DispatchQueue.main.async {
+             completionHandler(.failure(.error(error: "Decoding error")))
+             }
+             }
+             */
             guard let httpResponse = response as? HTTPURLResponse, (200..<399).contains(httpResponse.statusCode) else {
-                do
-                {
+                do {
                     let errorjsonData = try JSONSerialization.jsonObject(with: httpData)
                     print(errorjsonData)
-                    let errorjson = try JSONDecoder().decode(ErrorHandlerModel.self, from: httpData)
-                    if let validationError = errorjson.status {
-                        DispatchQueue.main.async {
-                            completionHandler(.failure(.error(error: validationError)))
-                        }
-                        return
-                    }else{
-                        completionHandler(.failure(.error(error: "Please try again later")))
-                        return
+                    let errorResponse = try JSONDecoder().decode(ErrorHandlerModel.self, from: httpData)
+                    let errorMessage = errorResponse.error_message ?? "Please try again later"
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(.error(error: errorMessage)))
                     }
-                }catch{
-                    print(error)
+                } catch {
                     DispatchQueue.main.async {
                         completionHandler(.failure(.error(error: "Decoding error")))
                     }
-                    return
                 }
+                return
             }
-            do
-            {
+            
+            
+            do {
                 let jsonData = try JSONSerialization.jsonObject(with: httpData)
                 print(jsonData)
                 let json = try JSONDecoder().decode(T.self, from: httpData)
                 DispatchQueue.main.async {
                     completionHandler(.success(json))
                 }
-            }catch{
-                print(error)
+            } catch {
                 DispatchQueue.main.async {
                     completionHandler(.failure(.error(error: "Decoding error")))
                 }
@@ -125,4 +157,6 @@ class NetworkManager: NSObject {
 struct ErrorHandlerModel: Decodable {
     let message: String?
     let status: String?
+    let error_code: String?
+    let error_message: String?
 }

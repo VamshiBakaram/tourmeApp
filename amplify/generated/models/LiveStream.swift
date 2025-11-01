@@ -14,7 +14,8 @@ public struct LiveStream: Model {
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
   
-  public init(id: String = UUID().uuidString,
+  public init(
+      id: String = UUID().uuidString,
       language: Language,
       name: String,
       streamDate: Temporal.DateTime? = nil,
@@ -22,7 +23,7 @@ public struct LiveStream: Model {
       enabled: Bool,
       thumbnailUrl: String,
       videoUrl: String) {
-    self.init(id: id,
+      self.init(id: id,
       language: language,
       name: name,
       streamDate: streamDate,

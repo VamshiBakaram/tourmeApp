@@ -116,6 +116,8 @@
 		AB9AFDFAFCEE977A6E082EDA /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
 		BC5A4CFA54EB3761586F17EB /* Tour+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7536E0D381749669ABB1D40 /* Tour+Schema.swift */; };
 		BE916C534570E8C89355FC3D /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */; };
+		D3ECA69C2CB7B8C700C0FE01 /* DeleteAccView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECA69B2CB7B8B900C0FE01 /* DeleteAccView.swift */; };
+		D3ECA69E2CB7C0A700C0FE01 /* DeleteAccViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECA69D2CB7C09D00C0FE01 /* DeleteAccViewModel.swift */; };
 		F37A2BF25F241C2B1C35F196 /* BusStop+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EE328D7FDBB709DEF3761 /* BusStop+Schema.swift */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +238,8 @@
 		9A2B6B12457FD2510CC8F309 /* Language.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Language.swift; path = amplify/generated/models/Language.swift; sourceTree = "<group>"; };
 		B0C66442A77E589C7851B06B /* Tour.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Tour.swift; path = amplify/generated/models/Tour.swift; sourceTree = "<group>"; };
 		B7536E0D381749669ABB1D40 /* Tour+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Tour+Schema.swift"; path = "amplify/generated/models/Tour+Schema.swift"; sourceTree = "<group>"; };
+		D3ECA69B2CB7B8B900C0FE01 /* DeleteAccView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccView.swift; sourceTree = "<group>"; };
+		D3ECA69D2CB7C09D00C0FE01 /* DeleteAccViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccViewModel.swift; sourceTree = "<group>"; };
 		D7B687507713AC565751D483 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		DE6CBEA47F0D3E5A00C72338 /* GeoPoint.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = GeoPoint.swift; path = amplify/generated/models/GeoPoint.swift; sourceTree = "<group>"; };
 		EE555BFD882B8B5094419296 /* BusStop.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = BusStop.swift; path = amplify/generated/models/BusStop.swift; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 		408D715D2669160900F272A2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D3ECA69D2CB7C09D00C0FE01 /* DeleteAccViewModel.swift */,
 				408D716826691C4600F272A2 /* MenuModel.swift */,
 				405858E7266A98A400832541 /* TourViewModel.swift */,
 				40EBE87526C19D8800273625 /* PlayerViewModel.swift */,
@@ -457,6 +462,7 @@
 		40AA16A826BDAEC4001E7E7F /* Tours */ = {
 			isa = PBXGroup;
 			children = (
+				D3ECA69B2CB7B8B900C0FE01 /* DeleteAccView.swift */,
 				405F876F2794B9E000A905CA /* ToursGridView.swift */,
 				405858DB266A985400832541 /* ToursListView.swift */,
 				40AA16A426BDAE3F001E7E7F /* ToursMapView.swift */,
@@ -832,6 +838,7 @@
 				40E7219C266A70E70039157F /* SplashView.swift in Sources */,
 				4047057D2723B5560042DED3 /* HomeContentPager.swift in Sources */,
 				405F87702794B9E000A905CA /* ToursGridView.swift in Sources */,
+				D3ECA69E2CB7C0A700C0FE01 /* DeleteAccViewModel.swift in Sources */,
 				40029BA526D977D500129632 /* MapPinImage.swift in Sources */,
 				404705752723AB7C0042DED3 /* HomeContent+Schema.swift in Sources */,
 				405858E2266A986D00832541 /* TourDetailView.swift in Sources */,
@@ -855,6 +862,7 @@
 				8DA58F0FC51A8D758F653BE2 /* Tour.swift in Sources */,
 				405F87722795271D00A905CA /* UIDevice+Extensions.swift in Sources */,
 				40AA169F26BD83E7001E7E7F /* BusStopListItemView.swift in Sources */,
+				D3ECA69C2CB7B8C700C0FE01 /* DeleteAccView.swift in Sources */,
 				404705742723AB7C0042DED3 /* LiveStream.swift in Sources */,
 				4041DFAD270B5DB5002EC240 /* LiveStreamView.swift in Sources */,
 				7B69BF892B3ED22100DEDEA6 /* TourDetailsViewModel.swift in Sources */,
@@ -1054,7 +1062,7 @@
 				CODE_SIGN_ENTITLEMENTS = "tourmeapp (iOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = FHXYTGS22K;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1065,11 +1073,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tourmeapp.tourmeappisrael;
 				PRODUCT_NAME = tourmeapp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1084,7 +1096,7 @@
 				CODE_SIGN_ENTITLEMENTS = "tourmeapp (iOS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = FHXYTGS22K;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1095,11 +1107,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tourmeapp.tourmeappisrael;
 				PRODUCT_NAME = tourmeapp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -17,15 +17,11 @@ struct HomeItemModel: Identifiable {
 }
 
 struct LandingView: View {
-    
     @AppStorage("userLanguage") var userLanguage: Language = .en
     @Environment(\.colorScheme) var colorScheme
-    
     @EnvironmentObject var tourViewModel: TourViewModel
     @EnvironmentObject var menuData: MenuViewModel
-    
     @StateObject var homeContentViewModel = HomeContentViewModel()
-    
     @State private var currentPage = 0
     @State private var showingBioSheetZvi = false
     @State private var showingBioSheetMeyrav = false
@@ -52,6 +48,10 @@ struct LandingView: View {
                                     }
                                     if item.optionName == "Our Team" {
                                         MeetOutTeamView()
+                                            .navigationBarHidden(true)
+                                    }
+                                    if item.optionName == "Your Tour" {
+                                        ToursGridView(isFromHome: true)
                                             .navigationBarHidden(true)
                                     }
                                     if item.optionName == "Event" {

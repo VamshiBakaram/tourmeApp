@@ -26,29 +26,38 @@ class SignUpViewModel: ObservableObject {
             errorMessage = "Please enter email"
             return
         }
-        if displayName.isEmpty {
-            errorMessage = "Please enter display name"
-            return
-        }
+//        if displayName.isEmpty {
+//            errorMessage = "Please enter display name"
+//            return
+//        }
         if familyName.isEmpty {
-            errorMessage = "Please enter family name"
+            errorMessage = "Please enter full name"
             return
         }
-        if displayName == familyName {
-            errorMessage = "Display name and family name should not be same"
-            return
-        }
+//        if displayName == familyName {
+//            errorMessage = "Display name and family name should not be same"
+//            return
+//        }
         if password.isEmpty {
             errorMessage = "Please enter password"
+            return
+        }
+        if password.count < 6 {
+            errorMessage = "Passwords must be at least 6 characters."
             return
         }
         if confirmPassword.isEmpty {
             errorMessage = "Please enter confirm password"
             return
         }
+        if password != confirmPassword {
+            errorMessage = "Passwords and Confirm password do not match"
+            return
+        }
+        
         isShowLoader = true
-        let parameters = SignUpParameters(email: email, familyName: familyName, password: password, username: displayName)
-        NetworkManager.shared.request(type: SignUpModel.self, url: API.signup, httpMethod: .post, parameters: parameters, isTokenRequired: false) { [weak self]result in
+        let parameters = SignUpParameters(email: email, familyName: familyName, password: password)
+        NetworkManager.shared.request(type: SignUpModel.self, url: API.signupNew, httpMethod: .post, parameters: parameters, isTokenRequired: false) { [weak self]result in
             guard let self = self else { return }
             isShowLoader = false
             switch result {
@@ -79,16 +88,18 @@ struct SignUpParameters: Encodable {
     let email: String
     let familyName: String
     let password: String
-    let username: String
+  //  let username: String
 }
 
 
 struct SignUpModel: Decodable {
+    let status:String?
     let message: String?
     let errorCode, errorMessage: String?
     let data: SignUpDataModel?
 
     enum CodingKeys: String, CodingKey {
+        case status
         case message
         case errorCode = "error_code"
         case errorMessage = "error_message"

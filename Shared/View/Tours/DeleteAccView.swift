@@ -1,31 +1,31 @@
 //
-//  LogoutView.swift
-//  tourmeapp (iOS)
+//  DeleteAccView.swift
+//  tourmeapp
 //
-//  Created by ahex on 09/01/24.
+//  Created by Ahex-Guest on 10/10/24.
 //
 
 import SwiftUI
 
-struct LogoutView: View {
-    
+struct DeleteAccView: View {
     @Binding var isCancel: Bool
     @EnvironmentObject var sessionManager: SessionManager
     @AppStorage("displayName") var userDisplayName = ""
     @AppStorage("userLanguage") var userLanguage: Language = Language.en
     @State var isShowLogIn = false
+    @ObservedObject var deleteAccViewModel = DeleteAccViewModel()
     
     var body: some View {
         ZStack{
             VStack {
-                Text("Sign Out?".localized(userLanguage))
+                Text("Delete Account".localized(userLanguage))
                   .font(
                     .custom(.inriaSansBold, size: 20)
                   )
                   .foregroundColor(Color(red: 0.28, green: 0.28, blue: 0.28))
                   .padding(.vertical, 8)
                   .padding(.top, 20)
-                Text("Are you sure you want to sign out?".localized(userLanguage))
+                Text("Are you sure you want to delete your account?".localized(userLanguage))
                   .font(
                     .custom(.inriaSansBold, size: 16)
                   )
@@ -51,15 +51,14 @@ struct LogoutView: View {
                     })
                     
                     Button(action: {
-//                        sessionManager.userId = ""
-//                        sessionManager.email = ""
-//                        sessionManager.displayName = ""
-//                        sessionManager.displayName = ""
-//                        userDisplayName = ""
-                        sessionManager.authManager = "signUp"
-//                        isShowLogIn = true
+                        deleteAccViewModel.deleteAcc { data in
+                            if data.status == "Success"{
+                                sessionManager.authManager = "login"
+                                isShowLogIn = true
+                            }
+                        }
                     }, label: {
-                        Text("Sign Out".localized(userLanguage))
+                        Text("Delete".localized(userLanguage))
                             .frame(maxWidth: .infinity)
                             .frame(height: 45)
                             .font(
@@ -82,11 +81,25 @@ struct LogoutView: View {
             .background(Color.clear)
             .edgesIgnoringSafeArea(.all)
             
-//            if isShowLogIn {
-//                LoginView()
-//            }
+            if isShowLogIn {
+                LoginView()
+            }
         }
+        .toast($deleteAccViewModel.errorMessage)
     }
 }
 
 
+struct DeleteAccModel: Decodable {
+    let status:String?
+    let message: String?
+    let errorCode, errorMessage: String?
+  //  let data:String?
+    enum CodingKeys: String, CodingKey {
+        case status
+        case message
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
+      //  case data
+    }
+}

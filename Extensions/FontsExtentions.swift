@@ -15,5 +15,6 @@ extension Color {
 extension String {
     static let inriaSansRegular = "InriaSans-Regular"
     static let inriaSansBold = "InriaSans-Bold"
+    static let inriaSansLight = "InriaSans-Light"
     
 }

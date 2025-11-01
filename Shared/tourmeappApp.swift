@@ -25,6 +25,7 @@ struct tourmeappApp: App {
     @AppStorage("userLanguage") var userLanguage: Language = .en
     
     @State private var isShowFlashView = false
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
     
     init() {
         /// Force showOnboarding for testing
@@ -48,9 +49,16 @@ struct tourmeappApp: App {
                     OnboardingView()
                         .environmentObject(sessionManager)
                 }else{
-                    if sessionManager.authManager == "login" {
-                        LoginView()
-                            .environmentObject(sessionManager)
+                    if sessionManager.authManager == "signUp" {
+                     //   LoginView()
+                        if isFirstLaunch{
+                            SignUpView()
+                                .environmentObject(sessionManager)
+                        }else{
+                            LoginView()
+                                .environmentObject(sessionManager)
+                        }
+                        
                     }else{
                         MainView()
                             .environmentObject(sessionManager)

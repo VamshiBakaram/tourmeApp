@@ -93,7 +93,7 @@ struct OnboardingView: View {
                     }
                 }, label: {
                     if isFromSettings {
-                        Text("Save")
+                        Text("Save".localized(userLanguage))
                             .font(.custom(.inriaSansRegular, size: 18))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -342,10 +342,11 @@ struct UserProfileScreenView: View {
     @AppStorage("email") var userEmail = ""
     @AppStorage("phone") var userPhone = ""
     @AppStorage("displayName") var userDisplayName = ""
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
     
     @EnvironmentObject var sessionManager: SessionManager
-
-    
+    @FocusState private var isFocused: Bool
+ 
     @State var email = ""
     @State var phone = ""
     @State var displayName = ""
@@ -445,6 +446,10 @@ struct UserProfileScreenView: View {
                     .selectedTitleColor(.primary)
                     .frame(height: 50)
                     .keyboardType(.phonePad)
+                    .focused($isFocused)
+                    .onTapGesture {
+                        isFocused = false
+                    }
             }
             .padding(.horizontal, 20)
             .offset(y: -80)
@@ -461,14 +466,24 @@ struct UserProfileScreenView: View {
                 Button(action: {
                     withAnimation(.easeInOut) {
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        if isFromSettings {
-                            updateProfile()
+                        if phone.isEmpty{
+                            message = "Enter Phone number"
+                            return
+                        }
+                       
+                        if phone.count < 5 || phone.count > 15 {
+                            message = "Phone number must be between 5 and 15 digits"
                         }else{
-                            self.sessionManager.authManager = "home"
+                            if isFromSettings {
+                                updateProfile()
+                            }else{
+                                isFirstLaunch = false
+                                sessionManager.authManager = "login"
+                            }
                         }
                     }
                 }, label: {
-                    Text(isFromSettings ? "Update" : "Finish".localized(userLanguage))
+                    Text(isFromSettings ? "Update".localized(userLanguage) : "Finish".localized(userLanguage))
                         .font(.custom(.inriaSansRegular, size: 18))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -484,8 +499,9 @@ struct UserProfileScreenView: View {
         )
         .toast($message)
         .onAppear(perform: {
-            self.email = emailFromSignUp ?? ""
-            self.displayName = displayNameFromSignUp ?? ""
+            self.getProfileData()
+//            self.email = sessionManager.email
+//            self.displayName = sessionManager.displayName
             if isFromSettings {
                 self.email = sessionManager.email
                 self.displayName = sessionManager.displayName
@@ -501,15 +517,17 @@ struct UserProfileScreenView: View {
     
     func updateProfile() {
         self.isLoading = true
-        let parameters = UpdateProfile(email: email, familyName: sessionManager.familyName , id: sessionManager.userId ?? "", phoneNumber: phone, userName: displayName)
+        let parameters = UpdateProfile(email: email, familyName: displayName , id: sessionManager.userId ?? "", phoneNumber: phone)
         NetworkManager.shared.request(type: ResetPasswordModel.self, url: API.updateProfile, httpMethod: .post, parameters: parameters) { result in
             self.message = "Profile updated successfully"
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 sessionManager.email = email
                 sessionManager.phone = phone
                 sessionManager.displayName = displayName
                 userDisplayName = displayName
                 self.isLoading = false
+                self.getProfileData()
                 presentationMode.wrappedValue.dismiss()
             })
         }
@@ -529,7 +547,42 @@ struct UserProfileScreenView: View {
             }
         }
     }
+    
+    func getProfileData() {
+        self.isLoading = true
+        let url = "\(API.getUserProfile)?Id=\(sessionManager.userId ?? "")"
+        NetworkManager.shared.request(type: getProfileModel.self, url: url, httpMethod: .post,isTokenRequired: true) { result in
+            switch result {
+            case .success(let profileData):
+                        self.isLoading = false
+                        print(profileData)
+                email = profileData.data?.first?.email ?? ""
+                displayName = profileData.data?.first?.familyName ?? ""
+                
+                userDisplayName = profileData.data?.first?.familyName ?? ""
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    switch error {
+                    case .message(message: let message):
+                        if message == "error" {
+                            self.message = "Invalid details".localized(self.userLanguage)
+                        }
+                    case .error(error: let error):
+                        if error == "error" {
+                            self.message = "Invalid details".localized(self.userLanguage)
+                        }else{
+                            self.message = error
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
 }
+
+
 
 var totalPages = 4
 
@@ -538,5 +591,24 @@ struct UpdateProfile: Encodable {
     let familyName: String
     let id: String
     let phoneNumber: String
-    let userName: String
+   // let userName: String
+}
+
+
+struct getProfileModel: Decodable {
+    let status: String?
+    let message, errorCode, errorMessage: String?
+    let data: [getProfileDataModel]?
+
+    enum CodingKeys: String, CodingKey {
+        case status, message
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
+        case data
+    }
+}
+
+struct getProfileDataModel: Decodable {
+    let familyName, id, userName, email: String?
+    let phoneNumber: String?
 }

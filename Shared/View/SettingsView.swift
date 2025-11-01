@@ -11,6 +11,8 @@ import FlagKit
 import UIKit
 import MessageUI
 
+var shareEmail: String = ""
+
 struct SettingsView: View {
     
     init() {
@@ -26,7 +28,8 @@ struct SettingsView: View {
     
     @AppStorage("email") var userEmail = ""
     @AppStorage("phone") var userPhone = ""
-    @AppStorage("displayName") var userDisplayName = ""
+    
+    @AppStorage("displayName") var userDisplayName = "Guest"
     
     //@EnvironmentObject var sessionManager: SessionManager
     //@EnvironmentObject var userPreferencesStore: UserPreferencesStore
@@ -41,8 +44,16 @@ struct SettingsView: View {
     @State var isShowingDeleteMeConfirmation = false
     @Environment(\.colorScheme) var colorScheme
     @State var isShowLogout = false
+    @State var isShowLogIn = false
+    @EnvironmentObject var sessionManager: SessionManager
     
     @State var displayNameValue = ""
+    
+    @State var message: String?
+    
+    @State var isLoading = false
+    @State var error: Error?
+
     
     var body: some View {
         NavigationView {
@@ -63,7 +74,7 @@ struct SettingsView: View {
                                                 .foregroundColor(colorScheme == .dark ? .white : Color(red: 0.28, green: 0.28, blue: 0.28))
                                                 .font(.custom(.inriaSansRegular, size: 20))
                                                 .textCase(.none)
-                                            Text("\(displayNameValue),")
+                                            Text("\(userDisplayName),")
                                                 .foregroundColor(Color(red: 0.02, green: 0.62, blue: 0.85))
                                                 .font(.custom(.inriaSansRegular, size: 20))
                                                 .textCase(.none)
@@ -96,7 +107,7 @@ struct SettingsView: View {
                                     }
 
                                     NavigationLink {
-                                        UserProfileScreenView(image: "en_gedi_israel", title: "onboarding_user_profile_title".localized(userLanguage), detail: "May we have some Information?", bgColor: Color("PrimaryColor2"), emailFromSignUp: "", displayNameFromSignUp: "", isFromSettings: true)
+                                        UserProfileScreenView(image: "en_gedi_israel", title: "onboarding_user_profile_title".localized(userLanguage), detail: "May we have some Information?", bgColor: Color("PrimaryColor2"), emailFromSignUp: displayNameValue, displayNameFromSignUp: displayNameValue, isFromSettings: true)
                                             .transition(.scale)
                                     } label: {
                                         HStack {
@@ -136,8 +147,10 @@ struct SettingsView: View {
                                             .foregroundColor(colorScheme == .dark ? .white : Color(red: 0.28, green: 0.28, blue: 0.28))
                                             .font(.custom(.inriaSansBold, size: 14))
                                         Spacer()
-                                        Image("toggle_off")
-                                        .frame(width: 24, height: 24)
+                                        Toggle("", isOn: sessionManager.$isShowSubTitle)
+                                            .fixedSize()
+                                            .scaleEffect(0.6)
+                                            .offset(x: 5)
                                     }
                                 } header: {
                                     Text("PREFERENCES".localized(userLanguage))
@@ -146,6 +159,7 @@ struct SettingsView: View {
                                 }
                                 Section {
                                     Button {
+                                        shareEmail = "support@tourmeapp.net"
                                         isShowingMailView.toggle()
                                     } label: {
                                         HStack {
@@ -159,6 +173,7 @@ struct SettingsView: View {
                                     }
 
                                     Button {
+                                        shareEmail = "help@tourmeapp.net"
                                         isShowingMailView.toggle()
                                     } label: {
                                         HStack {
@@ -172,6 +187,7 @@ struct SettingsView: View {
                                     }
 
                                     Button {
+                                        shareEmail = "support@tourmeapp.net"
                                         isShowingMailView.toggle()
                                     } label: {
                                         HStack {
@@ -185,6 +201,7 @@ struct SettingsView: View {
                                     }
 
                                     Button {
+                                        shareEmail = "support@tourmeapp.net"
                                         isShowingMailView.toggle()
                                     } label: {
                                         HStack {
@@ -202,6 +219,22 @@ struct SettingsView: View {
                                         .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
                                         .font(.custom(.inriaSansBold, size: 12))
                                 }
+                                
+                                Section {
+                                    Button {
+                                        isShowLogIn = true
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "trash")
+                                                .renderingMode(.template)
+                                                .foregroundColor(colorScheme == .dark ? .white : .gray)
+                                            Text("Delete Account".localized(userLanguage))
+                                                .foregroundColor(colorScheme == .dark ? .white : Color(red: 0.28, green: 0.28, blue: 0.28))
+                                                .font(.custom(.inriaSansBold, size: 14))
+                                        }
+                                    }
+                                }
+                                
                                 Section {
                                     Button {
                                         isShowLogout = true
@@ -217,18 +250,38 @@ struct SettingsView: View {
                                     }
 
                                 }
+//                                .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
+                                footer: {
+                                    Text("Version: 14.3".localized(userLanguage))
+                                        .foregroundColor(Color.black)
+                                        .font(.custom(.inriaSansBold, size: 16))
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .padding(.top , 8)
+                                        .padding(.bottom, 5)
+                                        .fontWeight(.bold)
+                                }
+                                
                             }.background(.primary)
                         }.background(.primary)
                         
                     }.background(.primary)
+                        .onAppear {
+                            
+                        }
                     if isShowLogout {
                         LogoutView(isCancel: $isShowLogout)
                     }
+                    
+                    if isShowLogIn {
+                        DeleteAccView(isCancel: $isShowLogIn)
+                    }
+                    
+                    
                 }
             }
         }
         .sheet(isPresented: $isShowingMailView) {
-            EmailView(isShowing: $isShowingMailView, result: $result)
+            EmailView(isShowing: $isShowingMailView, result: $result, mail: shareEmail)
         }
         .onAppear(perform: {
             displayNameValue = userDisplayName
@@ -245,6 +298,7 @@ struct SettingsView: View {
 struct EmailView: UIViewControllerRepresentable {
     @Binding var isShowing: Bool
     @Binding var result: Result<MFMailComposeResult, Error>?
+    var mail: String
 
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         @Binding var isShowing: Bool
@@ -275,7 +329,7 @@ struct EmailView: UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<EmailView>) -> MFMailComposeViewController {
         let viewController = MFMailComposeViewController()
         viewController.mailComposeDelegate = context.coordinator
-        viewController.setToRecipients(["support@burris.co"])
+        viewController.setToRecipients([mail])
         viewController.setSubject("")
         viewController.setMessageBody("", isHTML: false)
 

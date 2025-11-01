@@ -115,17 +115,19 @@ struct ResetPasswordView: View {
             switch result {
             case .success(let response):
                 isLoading = false
-                if response.status ?? "" == "Success" {
+                if response.status == "Success" {
                     errorMessage = response.error_message ?? ""
                     self.isShowOTPScreen = true
                 }
             case .failure(_):
                 isLoading = false
-                break
+                errorMessage = "Your account is deleted or deactivated"
             }
         }
     }
 }
+
+
 
 #Preview {
     ResetPasswordView()
